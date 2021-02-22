@@ -5,7 +5,7 @@ import loginImage from "../res/debateLoginBg.png"
 import TextField from "@material-ui/core/TextField";
 import logo from "../res/logoDezbateRo.png"
 import Button from "@material-ui/core/Button";
-import GoogleLogin from "react-google-login";
+import {signInWithGoogle} from "../firebase/firebaseUtils";
 import {AccountCircle, LockRounded} from "@material-ui/icons"
 
 export default class Login extends React.Component{
@@ -30,17 +30,15 @@ export default class Login extends React.Component{
                     <TextField type={"password"} label={"Password"} margin={"normal"} InputProps={{startAdornment: <InputAdornment position={"start"}><LockRounded/></InputAdornment>}}/>
                     <div style={{height: 20}}/>
                     <Button color={"primary"} variant ={"contained"}>Log In</Button>
+                    <Button onClick = {signInWithGoogle} color={"primary"} variant ={"contained"}>Log In With Gogle</Button>
                     <Button> Don't have an account? Sign up now!</Button>
                 </div>
                 <div/>
-                <GoogleLogin isSignedIn = {true} clientId={"189754080959-7uoa5k0k156grh0pafm6v2n1ka2jb06t.apps.googleusercontent.com"} onSuccess={this.logResponse} onFailure={this.logResponse}/>
+                {/*Authentication folosind OAUTH. DEPRECATED pentru ca voi folosi Firebase*/}
+                {/*<GoogleLogin isSignedIn = {true} clientId={"189754080959-7uoa5k0k156grh0pafm6v2n1ka2jb06t.apps.googleusercontent.com"} onSuccess={this.logResponse} onFailure={this.logResponse}/>*/}
             </Grid>
         </Grid>
         );
-    }
-
-    logResponse(response) {
-        console.log(response)
     }
 }
 
