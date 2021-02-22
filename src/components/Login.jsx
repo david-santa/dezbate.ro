@@ -24,6 +24,7 @@ export default class Login extends React.Component{
                 <div style = {{display:'flex', flexDirection:'column', maxWidth:400, minWidth:300, color:"white"}}>
                     <Grid container justify="center">
                         <img src={logo} width = "150"/>
+                        <h1> hau </h1>
                     </Grid>
                     <TextField label={"Username"} margin={"normal"} InputProps={{startAdornment: <InputAdornment position={"start"}><AccountCircle/></InputAdornment>}}/>
                     <TextField type={"password"} label={"Password"} margin={"normal"} InputProps={{startAdornment: <InputAdornment position={"start"}><LockRounded/></InputAdornment>}}/>
