@@ -1,11 +1,10 @@
-import logo from './logo.svg';
+
 import './App.css';
 import Login from "./components/Login";
 import React from "react";
 import {auth} from "./firebase/firebaseUtils";
 import {Redirect, Switch, Route, BrowserRouter as Router} from 'react-router-dom'
 import Dashboard from './components/Dashboard'
-import Button from "@material-ui/core/Button";
 
 class App extends React.Component {
 
