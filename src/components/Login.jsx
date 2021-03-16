@@ -15,11 +15,11 @@ export default class Login extends React.Component{
 
     render() {
         return(
-        <Grid container style={{minHeight: '100vh'}}>
-            <Grid item xs={12} sm={6}>
+        <Grid container>
+            <Grid item xs={false} sm={4} md={7} style={{height:'100vh'}}>
                 <img src = {loginImage} style = {{width: '100%',height:'100%', objectFit: 'stretch'}}/>
             </Grid>
-            <Grid container item xs={12} sm={6} alignItems={"center"} direction={"column"} justify={"space-between"} style ={{background:"#212121",color:"aliceblue"}}>
+            <Grid container item xs={12} sm={8} md={5} alignItems={"center"} direction={"column"} justify={"space-between"} style ={{background:"#212121",color:"aliceblue",}}>
                 <div/>
                 <div style = {{display:'flex', flexDirection:'column', maxWidth:400, color:"white"}}>
                     <Grid container justify="center">
