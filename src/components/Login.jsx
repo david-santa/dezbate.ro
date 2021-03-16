@@ -8,9 +8,18 @@ import {signInWithGoogle} from "../firebase/firebaseUtils";
 import {AccountCircle, LockRounded} from "@material-ui/icons"
 import {CgFacebook, CgGoogle} from "react-icons/all";
 
+
 export default class Login extends React.Component{
     constructor(props) {
         super(props);
+    }
+
+    state={
+        isLogin:true
+    }
+
+    handleSignupButton = () => {
+        this.setState({isLogin: !this.state.isLogin});
     }
 
     render() {
@@ -34,12 +43,21 @@ export default class Login extends React.Component{
                         <InputLabel htmlFor={"passwordInput"} style = {{color:'aliceblue'}}> Password </InputLabel>
                         <Input startAdornment={<LockRounded/>} id = "passwordInput" type={"password"} style={{color:"aliceblue"}}/>
                     </FormControl>
+                    <br/>
+                    {this.state.isLogin?
+                        <></>
+                        :
+                        <FormControl>
+                        <InputLabel htmlFor={"passwordInput"} style = {{color:'aliceblue'}}> Confirm password </InputLabel>
+                        <Input startAdornment={<LockRounded/>} id = "confirmPasswordInput" type={"password"} style={{color:"aliceblue"}}/>
+                        </FormControl>
+                        }
                     <div style={{height: 20}}/>
                     <Button color={"secondary"} variant ={"contained"}>Log In </Button>
                     <h5 align={'center'}>OR</h5>
                     <Button onClick = {signInWithGoogle} style={{background:'white'}} variant ={"contained"}> <CgGoogle/> {'\t Sign in with Google'} </Button>
                     <Button color = "primary" onClick = {signInWithGoogle} variant ={"contained"}> <CgFacebook/> {'\t Sign in with Facebook'} </Button>
-                    <Button style = {{color:'aliceblue'}}> Don't have an account? Sign up now!</Button>
+                    <Button onClick={this.handleSignupButton} style={{color: 'aliceblue'}}> {this.state.isLogin?"Don't have an account? Sign Up":"Already have an account? Log In"} </Button>
                 </div>
                 <div/>
             </Grid>
