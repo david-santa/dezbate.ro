@@ -27,12 +27,12 @@ export default class Login extends React.Component{
                     </Grid>
                     <FormControl>
                         <InputLabel htmlFor={"userInput"} style = {{color:'aliceblue'}}> Username </InputLabel>
-                        <Input startAdornment={<AccountCircle/>} id = "userInput" style={{color:"aliceblue"}} margin={"normal"}/>
+                        <Input startAdornment={<AccountCircle/>} id = "userInput" style={{color:"aliceblue"}}/>
                     </FormControl>
                     <br/>
                     <FormControl>
                         <InputLabel htmlFor={"passwordInput"} style = {{color:'aliceblue'}}> Password </InputLabel>
-                        <Input startAdornment={<LockRounded/>} id = "passwordInput" type={"password"} style={{color:"aliceblue"}} margin={"normal"} />
+                        <Input startAdornment={<LockRounded/>} id = "passwordInput" type={"password"} style={{color:"aliceblue"}}/>
                     </FormControl>
                     <div style={{height: 20}}/>
                     <Button color={"secondary"} variant ={"contained"}>Log In </Button>

@@ -5,7 +5,6 @@ import React from "react";
 import {auth} from "./firebase/firebaseUtils";
 import {Redirect, Switch, Route, BrowserRouter as Router} from 'react-router-dom'
 import Dashboard from './components/Dashboard'
-import SignInSide from "./components/anotherLoginAttempt";
 
 class App extends React.Component {
 
