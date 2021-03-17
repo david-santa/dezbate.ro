@@ -32,7 +32,7 @@ export default class Login extends React.Component {
     }
 
     handleEmailPassSignIn = () => {
-        firebase.auth().signInWithEmailAndPassword(this.state.userInput, this.state.passInput)
+        firebase.auth().signInWithEmailAndPassword(this.state.emailInput, this.state.passInput)
             .then((userCredential) => {
                 // Signed in
                 var user = userCredential.user;
