@@ -29,7 +29,7 @@ class Dashboard extends React.Component {
                                 style={{padding: '10px 10px 10px 20px', 'fontSize': '18px'}}>Descopera</Button>
                         <Button size={"large"} color={"secondary"} style={{padding: '10px', 'fontSize': '18px'}}>Incepe
                             o dezbatere</Button>
-                        <p className={classes.snapRight}>{this.props.currentUser.displayName}</p>
+                        <p className={classes.snapRight}>{this.props.currentUser?this.props.currentUser.displayName:<></>}</p>
                     </Toolbar>
                 </AppBar>
                 <div>
