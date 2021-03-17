@@ -75,17 +75,17 @@ export default class Login extends React.Component {
                             <></>
                             :
                             <FormControl>
-                                <InputLabel htmlFor={"emailInput"} style={{color: 'aliceblue'}}> Email </InputLabel>
-                                <Input name={"emailInput"} value={this.state.emailInput}
-                                       onChange={this.handleInputChange} startAdornment={<Email/>} id="emailInput"
-                                       style={{color: "aliceblue"}}/>
+                                <InputLabel htmlFor={"userInput"} style={{color: 'aliceblue'}}> Username </InputLabel>
+                                <Input name={"userInput"} value={this.state.userInput} onChange={this.handleInputChange}
+                                       startAdornment={<AccountCircle/>} id="userInput" style={{color: "aliceblue"}}/>
                             </FormControl>
                         }
                         <br/>
                         <FormControl>
-                            <InputLabel htmlFor={"userInput"} style={{color: 'aliceblue'}}> Username </InputLabel>
-                            <Input name={"userInput"} value={this.state.userInput} onChange={this.handleInputChange}
-                                   startAdornment={<AccountCircle/>} id="userInput" style={{color: "aliceblue"}}/>
+                            <InputLabel htmlFor={"emailInput"} style={{color: 'aliceblue'}}> Email </InputLabel>
+                            <Input name={"emailInput"} value={this.state.emailInput}
+                                   onChange={this.handleInputChange} startAdornment={<Email/>} id="emailInput"
+                                   style={{color: "aliceblue"}}/>
                         </FormControl>
                         <br/>
                         <FormControl>
