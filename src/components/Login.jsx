@@ -4,10 +4,10 @@ import Grid from "@material-ui/core/Grid";
 import loginImage from "../res/debateLoginBg.png"
 import logo from "../res/logoDezbateRo.png"
 import Button from "@material-ui/core/Button";
+import firebase from 'firebase';
 import {signInWithGoogle} from "../firebase/firebaseUtils";
 import {AccountCircle, LockRounded} from "@material-ui/icons"
 import {CgFacebook, CgGoogle} from "react-icons/all";
-
 
 export default class Login extends React.Component{
     constructor(props) {
@@ -15,11 +15,46 @@ export default class Login extends React.Component{
     }
 
     state={
-        isLogin:true
+        isLogin:true,
+        emailInput:'',
+        passInput:''
     }
 
     handleSignupButton = () => {
         this.setState({isLogin: !this.state.isLogin});
+    }
+
+    //TODO: Delete this when you have proper sign up
+    handleTestSignup = () =>{
+        let email = "davidsanta1999@gmail.com";
+        let password = "tecsoresmecher99";
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then((userCredential) => {
+                // Signed in
+                var user = userCredential.user;
+                // ...
+                user.sendEmailVerification().then(console.log("email sent to " + user.email));
+            })
+            .catch((error) => {
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // ..
+            });
+    }
+
+    handleEmailPassSignIn = () =>{
+        let email = "davidsanta1999@gmail.com";
+        let password = "tecsoresmecher99";
+        firebase.auth().signInWithEmailAndPassword(email, password)
+            .then((userCredential) => {
+                // Signed in
+                var user = userCredential.user;
+                // ...
+            })
+            .catch((error) => {
+                var errorCode = error.code;
+                var errorMessage = error.message;
+            });
     }
 
     render() {
@@ -53,11 +88,14 @@ export default class Login extends React.Component{
                         </FormControl>
                         }
                     <div style={{height: 20}}/>
-                    <Button color={"secondary"} variant ={"contained"}>Log In </Button>
+                    <Button onClick={this.handleEmailPassSignIn} color={"secondary"} variant ={"contained"}>Log In </Button>
                     <h5 align={'center'}>OR</h5>
                     <Button onClick = {signInWithGoogle} style={{background:'white'}} variant ={"contained"}> <CgGoogle/> {'\t Sign in with Google'} </Button>
                     <Button color = "primary" onClick = {signInWithGoogle} variant ={"contained"}> <CgFacebook/> {'\t Sign in with Facebook'} </Button>
                     <Button onClick={this.handleSignupButton} style={{color: 'aliceblue'}}> {this.state.isLogin?"Don't have an account? Sign Up":"Already have an account? Log In"} </Button>
+
+                    //TODO: Delete this when you have proper sign up
+                    <Button onClick={this.handleTestSignup} > Test Sign-Up - STERGE DUPA CE TESTEZI BOULE </Button>
                 </div>
                 <div/>
             </Grid>
