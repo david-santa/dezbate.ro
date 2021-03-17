@@ -34,9 +34,7 @@ export default class Login extends React.Component {
     handleEmailPassSignIn = () => {
         firebase.auth().signInWithEmailAndPassword(this.state.emailInput, this.state.passInput)
             .then((userCredential) => {
-                // Signed in
-                var user = userCredential.user;
-                // ...
+                let user = userCredential.user
             })
             .catch((error) => {
                 var errorMessage = error.message;
@@ -46,10 +44,10 @@ export default class Login extends React.Component {
 
     handleSignUp = () => {
         firebase.auth().createUserWithEmailAndPassword(this.state.emailInput, this.state.passInput)
-            .then((userCredential) => {
-                // Signed in
-                var user = userCredential.user;
-                // ...
+            .then((result) => {
+                return result.user.updateProfile({
+                    displayName: this.state.userInput
+                })
             })
             .catch((error) => {
                 var errorMessage = error.message;
