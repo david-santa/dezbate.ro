@@ -29,7 +29,11 @@ class Dashboard extends React.Component {
                                 style={{padding: '10px 10px 10px 20px', 'fontSize': '18px'}}>Descopera</Button>
                         <Button size={"large"} color={"secondary"} style={{padding: '10px', 'fontSize': '18px'}}>Incepe
                             o dezbatere</Button>
-                        <p className={classes.snapRight}>{this.props.currentUser?this.props.currentUser.displayName:<></>}</p>
+                        <div style={{display:'flex', flexDirection:"row", alignItems:'center'}} className={classes.snapRight}>
+                            <p className={classes.snapRight}>{this.props.currentUser ? this.props.currentUser.displayName : <></>}</p>
+                            <img height={"35px"} style={{"borderRadius": "50%", "marginLeft": "10px", position:"relative"}}
+                                 src={this.props.currentUser ? this.props.currentUser.photoURL : ""}/>
+                        </div>
                     </Toolbar>
                 </AppBar>
                 <div>
