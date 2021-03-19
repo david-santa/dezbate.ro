@@ -1,6 +1,6 @@
 import React from "react";
 import {auth} from "../firebase/firebaseUtils";
-import {Redirect} from "react-router-dom";
+import {Redirect, Route} from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import logoFaraText from '../res/logoFaraText.png'
 import {withStyles} from '@material-ui/core/styles'
@@ -41,6 +41,10 @@ class Dashboard extends React.Component {
         this.setState({menuAnchor: null})
     }
 
+    handleLogout = () =>{
+        auth.signOut();
+    }
+
     render() {
         console.log(this.props.currentUser)
         const {classes} = this.props;
@@ -70,7 +74,7 @@ class Dashboard extends React.Component {
                             >
                                 <MenuItem onClick={this.handleCloseMenu}>Profile</MenuItem>
                                 <MenuItem onClick={this.handleCloseMenu}>My account</MenuItem>
-                                <MenuItem onClick={this.handleCloseMenu}>Logout</MenuItem>
+                                <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
                             </Menu>
 
                         </div>
