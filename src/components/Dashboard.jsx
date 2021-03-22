@@ -63,17 +63,18 @@ class Dashboard extends React.Component {
                 <AppBar>
                     <Toolbar>
                         <img src={logoFaraText} height={"50px"}/>
-                        <Button size={"large"}
+                        <Button size={"small"}
                                 style={{
                                     padding: '10px 10px 10px 20px',
-                                    'fontSize': '18px',
+                                    'fontSize': 'min(2vw,24px)',
+
                                     'color': '#ececec'
                                 }}>Descopera</Button>
-                        <Button size={"large"} style={{padding: '10px', 'fontSize': '18px', 'color': '#ececec'}}>Incepe
+                        <Button size={"large"} style={{padding: '10px', 'fontSize': 'min(2vw,24px)', 'color': '#ececec'}}>Incepe
                             o dezbatere</Button>
                         <div style={{display: 'flex', flexDirection: "row", alignItems: 'center'}}
                              className={classes.snapRight}>
-                            <p className={classes.snapRight}>{this.props.currentUser?this.props.currentUser.displayName===null?this.props.currentUser.email:this.props.currentUser.displayName:<></>}</p>
+                            <p style={{'fontSize':'min(2vw,24px)'}} className={classes.snapRight}>{this.props.currentUser?this.props.currentUser.displayName===null?this.props.currentUser.email:this.props.currentUser.displayName:<></>}</p>
                             <img height={"35px"}
                                  style={{"borderRadius": "50%", "marginLeft": "10px", position: "relative"}}
                                  src={this.props.currentUser ? this.props.currentUser.photoURL : ""}/>
@@ -106,8 +107,7 @@ class Dashboard extends React.Component {
 
                 <div style={{}}>
                     <Paper style={{display: 'flex', alignContent: 'center', padding: '30px', background: "#1b1b2f"}}>
-                        <Grid container spacing={3}
-                              style={{display: 'flex', alignContent: 'center', flexDirection: 'row'}}>
+                        <Grid container spacing={3} direction='row' justify='center' alignItems='center'>
                             {this.state.topicsArray.map(item => <Grid item>
                                 <DebateCard key={item._id} titlu={item.title} imagine={item.imageURL} vizualizari={item.views} participanti={item.participants} argumente={item.arguments}>
 
