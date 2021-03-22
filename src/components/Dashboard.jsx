@@ -31,7 +31,12 @@ class Dashboard extends React.Component {
     }
 
     state = {
-        menuAnchor: null
+        menuAnchor: null,
+        topicsArray:[]
+    }
+
+    componentDidMount() {
+        fetch("http://localhost:3001/topics").then(res => res.json()).then(topics=>this.setState({topicsArray:topics.message})).then(res=>console.log(this.state.topicsArray));
     }
 
     handleExpandMenu = (e) => {
@@ -92,48 +97,49 @@ class Dashboard extends React.Component {
                 </div>
 
                 <div style={{}}>
-                    <Paper style={{padding: '30px',background:"#1b1b2f"}}>
-                        <Grid container spacing={3}>
-                            <Grid item>
-                                <DebateCard
-                                    titlu={"Titlu Dezbatere"}
-                                    descriere={"Aceasta este descrierea dezbaterii si este foarte descriptiva dupa cum bine puteti citi. " +
-                                    "Sper sa nu iasa in afara cardului daca scriu foarte mult ci sa o ia in jos"}
-                                    imagine={"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fvia.placeholder.com%2F350x150&f=1&nofb=1"}>
-                                </DebateCard>
-                            </Grid>
+                    <Paper style={{display:'flex',alignContent:'center', padding: '30px',background:"#1b1b2f"}}>
+                        <Grid container spacing={3} style={{display:'flex',alignContent:'center', flexDirection:'row'}}>
+                            {this.state.topicsArray.map(item=><Grid item> <DebateCard titlu={item.title}></DebateCard> </Grid>)}
+                            {/*<Grid item>*/}
+                            {/*    <DebateCard*/}
+                            {/*        titlu={"Titlu Dezbatere"}*/}
+                            {/*        descriere={"Aceasta este descrierea dezbaterii si este foarte descriptiva dupa cum bine puteti citi. " +*/}
+                            {/*        "Sper sa nu iasa in afara cardului daca scriu foarte mult ci sa o ia in jos"}*/}
+                            {/*        imagine={"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fvia.placeholder.com%2F350x150&f=1&nofb=1"}>*/}
+                            {/*    </DebateCard>*/}
+                            {/*</Grid>*/}
 
-                            <Grid item>
-                                <DebateCard titlu={"Alt titlu de dezbatere"}
-                                            descriere={"Asta este cu totul alta descriere nu e aceeasi cu aia din cardul din stanga da?"}
-                                            imagine={"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fvia.placeholder.com%2F350x150&f=1&nofb=1"}>
-                                </DebateCard>
-                            </Grid>
+                            {/*<Grid item>*/}
+                            {/*    <DebateCard titlu={"Alt titlu de dezbatere"}*/}
+                            {/*                descriere={"Asta este cu totul alta descriere nu e aceeasi cu aia din cardul din stanga da?"}*/}
+                            {/*                imagine={"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fvia.placeholder.com%2F350x150&f=1&nofb=1"}>*/}
+                            {/*    </DebateCard>*/}
+                            {/*</Grid>*/}
 
-                            <Grid item>
-                                <DebateCard
-                                    titlu={"Titlu Dezbatere"}
-                                    descriere={"Aceasta este descrierea dezbaterii si este foarte descriptiva dupa cum bine puteti citi. " +
-                                    "Sper sa nu iasa in afara cardului daca scriu foarte mult ci sa o ia in jos"}
-                                    imagine={"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fvia.placeholder.com%2F350x150&f=1&nofb=1"}>
-                                </DebateCard>
-                            </Grid>
+                            {/*<Grid item>*/}
+                            {/*    <DebateCard*/}
+                            {/*        titlu={"Titlu Dezbatere"}*/}
+                            {/*        descriere={"Aceasta este descrierea dezbaterii si este foarte descriptiva dupa cum bine puteti citi. " +*/}
+                            {/*        "Sper sa nu iasa in afara cardului daca scriu foarte mult ci sa o ia in jos"}*/}
+                            {/*        imagine={"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fvia.placeholder.com%2F350x150&f=1&nofb=1"}>*/}
+                            {/*    </DebateCard>*/}
+                            {/*</Grid>*/}
 
-                            <Grid item>
-                                <DebateCard titlu={"Alt titlu de dezbatere"}
-                                            descriere={"Asta este cu totul alta descriere nu e aceeasi cu aia din cardul din stanga da?"}
-                                            imagine={"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fvia.placeholder.com%2F350x150&f=1&nofb=1"}>
-                                </DebateCard>
-                            </Grid>
+                            {/*<Grid item>*/}
+                            {/*    <DebateCard titlu={"Alt titlu de dezbatere"}*/}
+                            {/*                descriere={"Asta este cu totul alta descriere nu e aceeasi cu aia din cardul din stanga da?"}*/}
+                            {/*                imagine={"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fvia.placeholder.com%2F350x150&f=1&nofb=1"}>*/}
+                            {/*    </DebateCard>*/}
+                            {/*</Grid>*/}
 
-                            <Grid item>
-                                <DebateCard
-                                    titlu={"Titlu Dezbatere"}
-                                    descriere={"Aceasta este descrierea dezbaterii si este foarte descriptiva dupa cum bine puteti citi. " +
-                                    "Sper sa nu iasa in afara cardului daca scriu foarte mult ci sa o ia in jos"}
-                                    imagine={"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fvia.placeholder.com%2F350x150&f=1&nofb=1"}>
-                                </DebateCard>
-                            </Grid>
+                            {/*<Grid item>*/}
+                            {/*    <DebateCard*/}
+                            {/*        titlu={"Titlu Dezbatere"}*/}
+                            {/*        descriere={"Aceasta este descrierea dezbaterii si este foarte descriptiva dupa cum bine puteti citi. " +*/}
+                            {/*        "Sper sa nu iasa in afara cardului daca scriu foarte mult ci sa o ia in jos"}*/}
+                            {/*        imagine={"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fvia.placeholder.com%2F350x150&f=1&nofb=1"}>*/}
+                            {/*    </DebateCard>*/}
+                            {/*</Grid>*/}
                         </Grid>
                     </Paper>
                 </div>
