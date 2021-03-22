@@ -9,14 +9,14 @@ import {
     AccordionSummary,
     AppBar,
     Card,
-    CardContent,
+    CardContent, CardHeader, CardMedia, IconButton,
     Menu, MenuItem,
     Paper,
     Toolbar,
     Typography
 } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
-import {ExpandMore} from "@material-ui/icons";
+import {ExpandMore, MoreVert} from "@material-ui/icons";
 
 const styles = (theme) => ({
     snapRight: {
@@ -41,7 +41,7 @@ class Dashboard extends React.Component {
         this.setState({menuAnchor: null})
     }
 
-    handleLogout = () =>{
+    handleLogout = () => {
         auth.signOut();
     }
 
@@ -92,10 +92,24 @@ class Dashboard extends React.Component {
                     <Paper>
                         <Grid container>
                             <Grid item>
-                                <Card>
+                                <Card style={{maxWidth: '345px'}}>
+                                    <CardHeader
+                                        action={<IconButton aria-label='settings'>
+                                            <MoreVert/>
+                                        </IconButton>}
+                                        title={<Typography>
+                                            Titlu Dezbatere
+                                        </Typography>}
+                                    />
+                                    <CardMedia>
+                                        <img
+                                            src={"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fvia.placeholder.com%2F350x150&f=1&nofb=1"}/>
+                                    </CardMedia>
                                     <CardContent>
                                         <Typography>
-                                            hau
+                                            Aceasta este descrierea dezbaterii si este foarte descriptiva dupa cum bine
+                                            puteti citi. Sper sa nu iasa in afara cardului daca scriu foarte mult ci sa
+                                            o ia in jos
                                         </Typography>
                                     </CardContent>
                                 </Card>
