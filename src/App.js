@@ -5,6 +5,7 @@ import React from "react";
 import {auth} from "./firebase/firebaseUtils";
 import {Redirect, Switch, Route, BrowserRouter as Router} from 'react-router-dom'
 import Dashboard from './components/Dashboard'
+import Profile from "./components/Profile";
 
 class App extends React.Component {
 
@@ -38,6 +39,9 @@ class App extends React.Component {
                     </Route>
                     <Route path = "/dashboard">
                         <Dashboard currentUser = {this.state.currentUser}/>
+                    </Route>
+                    <Route path={"/profile"}>
+                        <Profile currentUser = {this.state.currentUser}/>
                     </Route>
                 </Switch>
             </Router>
