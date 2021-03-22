@@ -1,9 +1,10 @@
 import React from "react";
 import {auth} from "../firebase/firebaseUtils";
-import {Redirect, Route} from "react-router-dom";
+import {Link, Redirect, Route} from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import logoFaraText from '../res/logoFaraText.png'
 import {withStyles} from '@material-ui/core/styles'
+import {Router} from 'react-router-dom';
 import {
     Accordion,
     AccordionSummary,
@@ -51,8 +52,11 @@ class Dashboard extends React.Component {
         auth.signOut();
     }
 
+    handleProfileClick = () =>{
+        return <Redirect to={'/profile'}/>
+    }
+
     render() {
-        console.log(this.props.currentUser)
         const {classes} = this.props;
         return (
             <div className={"dashboard_container"}>
@@ -82,7 +86,7 @@ class Dashboard extends React.Component {
                                 open={Boolean(this.state.menuAnchor)}
                                 onClose={this.handleCloseMenu}
                             >
-                                <MenuItem onClick={this.handleCloseMenu}>Profile</MenuItem>
+                                <MenuItem><Link to={'/profile'}>Profile</Link></MenuItem>
                                 <MenuItem onClick={this.handleCloseMenu}>My account</MenuItem>
                                 <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
                             </Menu>
