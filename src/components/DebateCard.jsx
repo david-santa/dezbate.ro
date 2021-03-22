@@ -31,11 +31,11 @@ export default class DebateCard extends React.Component {
                     </CardContent>
                     <br/>
                     <CardActions>
-                        <div style={{display: 'flex', alignContent: 'center', marginLeft: '15px'}}><Chat/> 32
+                        <div style={{display: 'flex', alignContent: 'center', marginLeft: '15px'}}><Chat/> {this.props.argumente}
                         </div>
-                        <div style={{display: 'flex', alignContent: 'center', marginLeft: '15px'}}><Visibility/> 44.6k
+                        <div style={{display: 'flex', alignContent: 'center', marginLeft: '15px'}}><Visibility/> {this.props.vizualizari}
                         </div>
-                        <div style={{display: 'flex', alignContent: 'center', marginLeft: '15px'}}><GroupSharp/> 18
+                        <div style={{display: 'flex', alignContent: 'center', marginLeft: '15px'}}><GroupSharp/> {this.props.participanti}
                         </div>
                     </CardActions>
                 </Card>

@@ -32,11 +32,11 @@ class Dashboard extends React.Component {
 
     state = {
         menuAnchor: null,
-        topicsArray:[]
+        topicsArray: []
     }
 
     componentDidMount() {
-        fetch("http://localhost:3001/topics").then(res => res.json()).then(topics=>this.setState({topicsArray:topics.message})).then(res=>console.log(this.state.topicsArray));
+        fetch("http://localhost:3001/topics").then(res => res.json()).then(topics => this.setState({topicsArray: topics.message})).then(res => console.log(this.state.topicsArray));
     }
 
     handleExpandMenu = (e) => {
@@ -60,8 +60,12 @@ class Dashboard extends React.Component {
                     <Toolbar>
                         <img src={logoFaraText} height={"50px"}/>
                         <Button size={"large"}
-                                style={{padding: '10px 10px 10px 20px', 'fontSize': '18px', 'color':'#ececec'}}>Descopera</Button>
-                        <Button size={"large"} style={{padding: '10px', 'fontSize': '18px', 'color':'#ececec'}}>Incepe
+                                style={{
+                                    padding: '10px 10px 10px 20px',
+                                    'fontSize': '18px',
+                                    'color': '#ececec'
+                                }}>Descopera</Button>
+                        <Button size={"large"} style={{padding: '10px', 'fontSize': '18px', 'color': '#ececec'}}>Incepe
                             o dezbatere</Button>
                         <div style={{display: 'flex', flexDirection: "row", alignItems: 'center'}}
                              className={classes.snapRight}>
@@ -97,9 +101,14 @@ class Dashboard extends React.Component {
                 </div>
 
                 <div style={{}}>
-                    <Paper style={{display:'flex',alignContent:'center', padding: '30px',background:"#1b1b2f"}}>
-                        <Grid container spacing={3} style={{display:'flex',alignContent:'center', flexDirection:'row'}}>
-                            {this.state.topicsArray.map(item=><Grid item> <DebateCard titlu={item.title}></DebateCard> </Grid>)}
+                    <Paper style={{display: 'flex', alignContent: 'center', padding: '30px', background: "#1b1b2f"}}>
+                        <Grid container spacing={3}
+                              style={{display: 'flex', alignContent: 'center', flexDirection: 'row'}}>
+                            {this.state.topicsArray.map(item => <Grid item>
+                                <DebateCard key={item._id} titlu={item.title} imagine={item.imageURL} vizualizari={item.views} participanti={item.participants} argumente={item.arguments}>
+
+                                </DebateCard>
+                            </Grid>)}
                         </Grid>
                     </Paper>
                 </div>
