@@ -37,7 +37,7 @@ class Dashboard extends React.Component {
     }
 
     componentDidMount() {
-        fetch("http://localhost:3001/topics").then(res => res.json()).then(topics => this.setState({topicsArray: topics.message})).then(res => console.log(this.state.topicsArray));
+        fetch("http://davidsanta.ro:3001/topics").then(res => res.json()).then(topics => this.setState({topicsArray: topics.message})).then(res => console.log(this.state.topicsArray));
     }
 
     handleExpandMenu = (e) => {
