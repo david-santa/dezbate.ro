@@ -69,7 +69,7 @@ class Dashboard extends React.Component {
                             o dezbatere</Button>
                         <div style={{display: 'flex', flexDirection: "row", alignItems: 'center'}}
                              className={classes.snapRight}>
-                            <p className={classes.snapRight}>{this.props.currentUser ? this.props.currentUser.displayName : <></>}</p>
+                            <p className={classes.snapRight}>{this.props.currentUser?this.props.currentUser.displayName===null?this.props.currentUser.email:this.props.currentUser.displayName:<></>}</p>
                             <img height={"35px"}
                                  style={{"borderRadius": "50%", "marginLeft": "10px", position: "relative"}}
                                  src={this.props.currentUser ? this.props.currentUser.photoURL : ""}/>

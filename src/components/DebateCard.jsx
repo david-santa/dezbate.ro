@@ -10,7 +10,7 @@ export default class DebateCard extends React.Component {
     render() {
         return (
             <div>
-                <Card style={{height: '325px', width: '345px', background: "#1f4068", color: '#ececec'}}>
+                <Card style={{height: '325px', width: '350px', background: "#1f4068", color: '#ececec'}}>
                     <CardHeader
                         action={<IconButton aria-label='settings'>
                             <MoreVert/>
@@ -24,10 +24,6 @@ export default class DebateCard extends React.Component {
                             src={this.props.imagine}/>
                     </CardMedia>
                     <CardContent>
-                        {/*<Typography>*/}
-                        {/*    {this.props.descriere}*/}
-                        {/*</Typography>*/}
-                        {/*<br/>*/}
                     </CardContent>
                     <br/>
                     <CardActions>
