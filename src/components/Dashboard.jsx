@@ -17,6 +17,7 @@ import {
 } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import {ExpandMore, MoreVert} from "@material-ui/icons";
+import DebateCard from "./DebateCard";
 
 const styles = (theme) => ({
     snapRight: {
@@ -89,40 +90,47 @@ class Dashboard extends React.Component {
                 </div>
 
                 <div>
-                    <Paper>
-                        <Grid container>
+                    <Paper style={{padding: '30px'}}>
+                        <Grid container spacing={3}>
                             <Grid item>
-                                <Card style={{maxWidth: '345px'}}>
-                                    <CardHeader
-                                        action={<IconButton aria-label='settings'>
-                                            <MoreVert/>
-                                        </IconButton>}
-                                        title={<Typography>
-                                            Titlu Dezbatere
-                                        </Typography>}
-                                    />
-                                    <CardMedia>
-                                        <img
-                                            src={"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fvia.placeholder.com%2F350x150&f=1&nofb=1"}/>
-                                    </CardMedia>
-                                    <CardContent>
-                                        <Typography>
-                                            Aceasta este descrierea dezbaterii si este foarte descriptiva dupa cum bine
-                                            puteti citi. Sper sa nu iasa in afara cardului daca scriu foarte mult ci sa
-                                            o ia in jos
-                                        </Typography>
-                                    </CardContent>
-                                </Card>
+                                <DebateCard
+                                    titlu={"Titlu Dezbatere"}
+                                    descriere={"Aceasta este descrierea dezbaterii si este foarte descriptiva dupa cum bine puteti citi. " +
+                                    "Sper sa nu iasa in afara cardului daca scriu foarte mult ci sa o ia in jos"}
+                                    imagine={"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fvia.placeholder.com%2F350x150&f=1&nofb=1"}>
+                                </DebateCard>
                             </Grid>
 
                             <Grid item>
-                                <Card>
-                                    <CardContent>
-                                        <Typography>
-                                            hau2
-                                        </Typography>
-                                    </CardContent>
-                                </Card>
+                                <DebateCard titlu={"Alt titlu de dezbatere"}
+                                            descriere={"Asta este cu totul alta descriere nu e aceeasi cu aia din cardul din stanga da?"}
+                                            imagine={"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fvia.placeholder.com%2F350x150&f=1&nofb=1"}>
+                                </DebateCard>
+                            </Grid>
+
+                            <Grid item>
+                                <DebateCard
+                                    titlu={"Titlu Dezbatere"}
+                                    descriere={"Aceasta este descrierea dezbaterii si este foarte descriptiva dupa cum bine puteti citi. " +
+                                    "Sper sa nu iasa in afara cardului daca scriu foarte mult ci sa o ia in jos"}
+                                    imagine={"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fvia.placeholder.com%2F350x150&f=1&nofb=1"}>
+                                </DebateCard>
+                            </Grid>
+
+                            <Grid item>
+                                <DebateCard titlu={"Alt titlu de dezbatere"}
+                                            descriere={"Asta este cu totul alta descriere nu e aceeasi cu aia din cardul din stanga da?"}
+                                            imagine={"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fvia.placeholder.com%2F350x150&f=1&nofb=1"}>
+                                </DebateCard>
+                            </Grid>
+
+                            <Grid item>
+                                <DebateCard
+                                    titlu={"Titlu Dezbatere"}
+                                    descriere={"Aceasta este descrierea dezbaterii si este foarte descriptiva dupa cum bine puteti citi. " +
+                                    "Sper sa nu iasa in afara cardului daca scriu foarte mult ci sa o ia in jos"}
+                                    imagine={"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fvia.placeholder.com%2F350x150&f=1&nofb=1"}>
+                                </DebateCard>
                             </Grid>
                         </Grid>
                     </Paper>
