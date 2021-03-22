@@ -10,18 +10,24 @@ export default class DebateCard extends React.Component {
     render() {
         return (
             <div>
-                <Card variant={'outlined'} style={{height: '325px', width: '350px', background: "#1f4068", color: '#ececec'}}>
+                <Card variant={'outlined'} style={{width: 'max(350px,35vh)', background: "#1f4068", color: '#ececec'}}>
                     <CardHeader
                         action={<IconButton aria-label='settings'>
                             <MoreVert/>
                         </IconButton>}
-                        title={<Typography>
+                        title={<Typography align={'center'} autoCapitalize={'true'} >
                             {this.props.titlu}
                         </Typography>}
                     />
                     <CardMedia>
                         <img
-                            src={this.props.imagine}/>
+                            style={{
+                                'display': 'block',
+                                marginLeft: 'auto',
+                                marginRight: 'auto',
+                                width: '80%'}}
+                            src={this.props.imagine}
+                        />
                     </CardMedia>
                     <CardContent>
                     </CardContent>

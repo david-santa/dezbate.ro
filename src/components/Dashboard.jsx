@@ -66,15 +66,15 @@ class Dashboard extends React.Component {
                         <Button size={"small"}
                                 style={{
                                     padding: '10px 10px 10px 20px',
-                                    'fontSize': 'min(2vw,24px)',
+                                    'fontSize': 'min(2vw,16px)',
 
                                     'color': '#ececec'
                                 }}>Descopera</Button>
-                        <Button size={"large"} style={{padding: '10px', 'fontSize': 'min(2vw,24px)', 'color': '#ececec'}}>Incepe
+                        <Button size={"large"} style={{padding: '10px', 'fontSize': 'min(2vw,16px)', 'color': '#ececec'}}>Incepe
                             o dezbatere</Button>
                         <div style={{display: 'flex', flexDirection: "row", alignItems: 'center'}}
                              className={classes.snapRight}>
-                            <p style={{'fontSize':'min(2vw,24px)'}} className={classes.snapRight}>{this.props.currentUser?this.props.currentUser.displayName===null?this.props.currentUser.email:this.props.currentUser.displayName:<></>}</p>
+                            <p style={{'fontSize':'min(2vw,16px)'}} className={classes.snapRight}>{this.props.currentUser?this.props.currentUser.displayName===null?this.props.currentUser.email:this.props.currentUser.displayName:<></>}</p>
                             <img height={"35px"}
                                  style={{"borderRadius": "50%", "marginLeft": "10px", position: "relative"}}
                                  src={this.props.currentUser ? this.props.currentUser.photoURL : ""}/>
