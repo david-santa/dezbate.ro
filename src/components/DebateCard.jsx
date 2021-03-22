@@ -10,7 +10,7 @@ export default class DebateCard extends React.Component {
     render() {
         return (
             <div>
-                <Card style={{maxWidth: '345px'}}>
+                <Card style={{height: '345px',width:'345px', background:"#1f4068", color:'#ececec'}}>
                     <CardHeader
                         action={<IconButton aria-label='settings'>
                             <MoreVert/>

@@ -54,9 +54,9 @@ class Dashboard extends React.Component {
                 <AppBar>
                     <Toolbar>
                         <img src={logoFaraText} height={"50px"}/>
-                        <Button size={"large"} color={"secondary"}
-                                style={{padding: '10px 10px 10px 20px', 'fontSize': '18px'}}>Descopera</Button>
-                        <Button size={"large"} color={"secondary"} style={{padding: '10px', 'fontSize': '18px'}}>Incepe
+                        <Button size={"large"}
+                                style={{padding: '10px 10px 10px 20px', 'fontSize': '18px', 'color':'#ececec'}}>Descopera</Button>
+                        <Button size={"large"} style={{padding: '10px', 'fontSize': '18px', 'color':'#ececec'}}>Incepe
                             o dezbatere</Button>
                         <div style={{display: 'flex', flexDirection: "row", alignItems: 'center'}}
                              className={classes.snapRight}>
@@ -82,15 +82,17 @@ class Dashboard extends React.Component {
                     </Toolbar>
                 </AppBar>
 
-                <div>
-                    {console.log(this.currentUser)}
-                    {this.props.currentUser ?
-                        <div><h1>I am the Dashboard!</h1>
-                        </div> : <Redirect to="/"/>}
-                </div>
+                <br/>
+                <br/>
+                <br/>
 
                 <div>
-                    <Paper style={{padding: '30px'}}>
+                    {this.props.currentUser ?
+                        <></> : <Redirect to="/"/>}
+                </div>
+
+                <div style={{}}>
+                    <Paper style={{padding: '30px',background:"#1b1b2f"}}>
                         <Grid container spacing={3}>
                             <Grid item>
                                 <DebateCard
