@@ -23,13 +23,19 @@ export const createUserProfileDocument = async(userAuth, additionalData) =>{
     console.log(snapShot);
 
     if(!snapShot.exists){
-        const {displayName, email} = userAuth;
+        const {displayName, email, emailVerified, photoURL} = userAuth;
         const createdAt = new Date();
         try{
             await userRef.set({
                 displayName,
                 email,
+                emailVerified,
+                photoURL,
                 createdAt,
+                debatesStarted:0,
+                arguments:0,
+                comments:0,
+                totalLikes:0,
                 ...additionalData
             })
         }
@@ -37,6 +43,11 @@ export const createUserProfileDocument = async(userAuth, additionalData) =>{
             console.log(e.message);
         }
     }
+    // else{
+    //     await userRef.update({
+    //         arguments: firebase.firestore.FieldValue.increment(1),
+    //     })
+    // }
 
     return userRef;
 }

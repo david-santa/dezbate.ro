@@ -20,14 +20,20 @@ class App extends React.Component {
     unsubscribeFromAuth = null;
 
     componentDidMount() {
-        this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
-            this.setState({currentUser: user});
+        this.unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
             if(user){
-                const userRef = createUserProfileDocument(user);
+                const userRef = await createUserProfileDocument(user);
                 userRef.onSnapshot(snapShot => {
-
+                    console.log(user)
+                    this.setState({
+                        currentUser:{
+                            id:snapShot.id,
+                            ...snapShot.data()
+                        }
+                        })
                 })
             }
+            this.setState({currentUser: user});
         })
     }
 
@@ -45,7 +51,7 @@ class App extends React.Component {
                     <Route path = "/dashboard">
                         <Dashboard currentUser = {this.state.currentUser}/>
                     </Route>
-                    <Route path={"/profile"}>
+                    <Route path={`/profile/`}>
                         <Profile currentUser = {this.state.currentUser}/>
                     </Route>
                 </Switch>
