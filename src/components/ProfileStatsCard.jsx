@@ -7,7 +7,7 @@ export default class ProfileStatsCard extends React.Component {
 
     render() {
         return (
-            <div style={{display: 'flex', flexDirection: 'column', 'alignContent': 'flex-start'}}>
+            <div style={{display: 'flex', flexDirection: 'column', marginLeft:'50px', width:'25%', alignItems:'start'}}>
                 <p>{this.props.title}</p>
                 <h3>{this.props.value}</h3>
             </div>
