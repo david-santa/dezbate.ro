@@ -2,7 +2,7 @@
 import './App.css';
 import Login from "./components/Login";
 import React from "react";
-import {auth} from "./firebase/firebaseUtils";
+import {auth, createUserProfileDocument} from "./firebase/firebaseUtils";
 import {Redirect, Switch, Route, BrowserRouter as Router} from 'react-router-dom'
 import Dashboard from './components/Dashboard'
 import Profile from "./components/Profile";
@@ -22,7 +22,12 @@ class App extends React.Component {
     componentDidMount() {
         this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
             this.setState({currentUser: user});
-            console.log(user);
+            if(user){
+                const userRef = createUserProfileDocument(user);
+                userRef.onSnapshot(snapShot => {
+
+                })
+            }
         })
     }
 
