@@ -19,6 +19,7 @@ import {
 import Grid from "@material-ui/core/Grid";
 import {ExpandMore, MoreVert} from "@material-ui/icons";
 import DebateCard from "./DebateCard";
+import Topbar from "./Topbar";
 
 const styles = (theme) => ({
     snapRight: {
@@ -32,7 +33,6 @@ class Dashboard extends React.Component {
     }
 
     state = {
-        menuAnchor: null,
         topicsArray: []
     }
 
@@ -40,61 +40,11 @@ class Dashboard extends React.Component {
         fetch("http://davidsanta.ro:3001/topics").then(res => res.json()).then(topics => this.setState({topicsArray: topics.message})).then(res => console.log(this.state.topicsArray));
     }
 
-    handleExpandMenu = (e) => {
-        this.setState({menuAnchor: e.currentTarget});
-    }
-
-    handleCloseMenu = () => {
-        this.setState({menuAnchor: null})
-    }
-
-    handleLogout = () => {
-        auth.signOut();
-    }
-
-    handleProfileClick = () =>{
-        return <Redirect to={'/profile'}/>
-    }
-
     render() {
         const {classes} = this.props;
         return (
             <div className={"dashboard_container"}>
-                <AppBar>
-                    <Toolbar>
-                        <img src={logoFaraText} height={"50px"}/>
-                        <Button size={"small"}
-                                style={{
-                                    padding: '10px 10px 10px 20px',
-                                    'fontSize': 'min(2vw,16px)',
-
-                                    'color': '#ececec'
-                                }}>Descopera</Button>
-                        <Button size={"large"} style={{padding: '10px', 'fontSize': 'min(2vw,16px)', 'color': '#ececec'}}>Incepe
-                            o dezbatere</Button>
-                        <div style={{display: 'flex', flexDirection: "row", alignItems: 'center'}}
-                             className={classes.snapRight}>
-                            <p style={{'fontSize':'min(2vw,16px)'}} className={classes.snapRight}>{this.props.currentUser?this.props.currentUser.displayName===null?this.props.currentUser.email:this.props.currentUser.displayName:<></>}</p>
-                            <img height={"35px"}
-                                 style={{"borderRadius": "50%", "marginLeft": "10px", position: "relative"}}
-                                 src={this.props.currentUser ? this.props.currentUser.photoURL : ""}/>
-                            <Button
-                                onClick={this.handleExpandMenu}> <ExpandMore/> </Button>
-                            <Menu
-                                id={'profileMenu'}
-                                anchorEl={this.state.menuAnchor}
-                                keepMounted
-                                open={Boolean(this.state.menuAnchor)}
-                                onClose={this.handleCloseMenu}
-                            >
-                                <MenuItem><Link to={'/profile'}>Profile</Link></MenuItem>
-                                <MenuItem onClick={this.handleCloseMenu}>My account</MenuItem>
-                                <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
-                            </Menu>
-
-                        </div>
-                    </Toolbar>
-                </AppBar>
+                <Topbar/>
 
                 <br/>
                 <br/>
@@ -109,7 +59,9 @@ class Dashboard extends React.Component {
                     <Paper style={{display: 'flex', alignContent: 'center', padding: '30px', background: "#1b1b2f"}}>
                         <Grid container spacing={3} direction='row' justify='center' alignItems='center'>
                             {this.state.topicsArray.map(item => <Grid item>
-                                <DebateCard key={item._id} titlu={item.title} imagine={item.imageURL} vizualizari={item.views} participanti={item.participants} argumente={item.arguments}>
+                                <DebateCard key={item._id} titlu={item.title} imagine={item.imageURL}
+                                            vizualizari={item.views} participanti={item.participants}
+                                            argumente={item.arguments}>
 
                                 </DebateCard>
                             </Grid>)}
