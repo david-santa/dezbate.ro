@@ -14,7 +14,7 @@ const styles = (theme) => ({
     }
 })
 
-class Topbar extends React.Component{
+class Topbar extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -31,17 +31,17 @@ class Topbar extends React.Component{
         auth.signOut();
     }
 
-    handleProfileClick = () =>{
+    handleProfileClick = () => {
         return <Redirect to={'/profile'}/>
     }
 
-    state={
+    state = {
         menuAnchor: null
     }
 
     render() {
         const {classes} = this.props;
-        return(
+        return (
             <AppBar>
                 <Toolbar>
                     <img src={logoFaraText} height={"50px"}/>
@@ -56,7 +56,8 @@ class Topbar extends React.Component{
                         o dezbatere</Button>
                     <div style={{display: 'flex', flexDirection: "row", alignItems: 'center'}}
                          className={classes.snapRight}>
-                        <p style={{'fontSize':'min(2vw,16px)'}} className={classes.snapRight}>{this.props.currentUser?this.props.currentUser.displayName===null?this.props.currentUser.email:this.props.currentUser.displayName:<></>}</p>
+                        <p style={{'fontSize': 'min(2vw,16px)'}}
+                           className={classes.snapRight}>{this.props.currentUser ? this.props.currentUser.displayName === null ? this.props.currentUser.email : this.props.currentUser.displayName : <></>}</p>
                         <img height={"35px"}
                              style={{"borderRadius": "50%", "marginLeft": "10px", position: "relative"}}
                              src={this.props.currentUser ? this.props.currentUser.photoURL : ""}/>

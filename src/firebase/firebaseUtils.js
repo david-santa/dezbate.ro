@@ -2,7 +2,7 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
-const config ={
+const config = {
     apiKey: "AIzaSyBrGW-FccDANyWSYDdT2-BVHIa_SmVw5bA",
     authDomain: "dezbate-ro.firebaseapp.com",
     databaseURL: "https://dezbate-ro-default-rtdb.europe-west1.firebasedatabase.app",
@@ -15,31 +15,30 @@ const config ={
 
 firebase.initializeApp(config);
 
-export const createUserProfileDocument = async(userAuth, additionalData) =>{
-    if(!userAuth) return;
+export const createUserProfileDocument = async (userAuth, additionalData) => {
+    if (!userAuth) return;
 
     const userRef = firestore.doc(`users/${userAuth.uid}`);
     const snapShot = await userRef.get();
     console.log(snapShot);
 
-    if(!snapShot.exists){
+    if (!snapShot.exists) {
         const {displayName, email, emailVerified, photoURL} = userAuth;
         const createdAt = new Date();
-        try{
+        try {
             await userRef.set({
                 displayName,
                 email,
                 emailVerified,
                 photoURL,
                 createdAt,
-                debatesStarted:0,
-                arguments:0,
-                comments:0,
-                totalLikes:0,
+                debatesStarted: 0,
+                arguments: 0,
+                comments: 0,
+                totalLikes: 0,
                 ...additionalData
             })
-        }
-        catch (e) {
+        } catch (e) {
             console.log(e.message);
         }
     }
