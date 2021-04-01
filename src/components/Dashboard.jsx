@@ -1,33 +1,12 @@
 import React from "react";
-import {auth} from "../firebase/firebaseUtils";
-import {Link, Redirect, Route} from "react-router-dom";
-import Button from "@material-ui/core/Button";
-import logoFaraText from '../res/logoFaraText.png'
+import {Redirect} from "react-router-dom";
 import {withStyles} from '@material-ui/core/styles'
-import {Router} from 'react-router-dom';
-import {
-    Accordion,
-    AccordionSummary,
-    AppBar,
-    Card,
-    CardContent, CardHeader, CardMedia, IconButton,
-    Menu, MenuItem,
-    Paper,
-    Toolbar,
-    Typography
-} from "@material-ui/core";
+import {Paper} from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
-import {ExpandMore, MoreVert} from "@material-ui/icons";
 import DebateCard from "./DebateCard";
 import Topbar from "./Topbar";
 
-const styles = (theme) => ({
-    snapRight: {
-        'margin-left': 'auto',
-    }
-})
-
-class Dashboard extends React.Component {
+export default class Dashboard extends React.Component {
     constructor(props) {
         super(props)
     }
@@ -44,7 +23,7 @@ class Dashboard extends React.Component {
         const {classes} = this.props;
         return (
             <div className={"dashboard_container"}>
-                <Topbar/>
+                <Topbar currentUser={this.props.currentUser}/>
 
                 <br/>
                 <br/>
@@ -58,8 +37,8 @@ class Dashboard extends React.Component {
                 <div style={{}}>
                     <Paper style={{display: 'flex', alignContent: 'center', padding: '30px', background: "#1b1b2f"}}>
                         <Grid container spacing={3} direction='row' justify='center' alignItems='center'>
-                            {this.state.topicsArray.map(item => <Grid item>
-                                <DebateCard key={item._id} titlu={item.title} imagine={item.imageURL}
+                            {this.state.topicsArray.map(item => <Grid item key={item._id}>
+                                <DebateCard titlu={item.title} imagine={item.imageURL}
                                             vizualizari={item.views} participanti={item.participants}
                                             argumente={item.arguments}>
 
@@ -74,5 +53,3 @@ class Dashboard extends React.Component {
         )
     }
 }
-
-export default withStyles(styles)(Dashboard)

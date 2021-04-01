@@ -9,19 +9,26 @@ export default class Profile extends React.Component {
     }
 
     componentDidMount() {
-        console.log(this.props.currentUser)
+            const { match: { params } } = this.props;
+            this.user = this.getUserData(params.id);
     }
+
+    async getUserData(uid){
+        const userRef = firestore.doc(`users/${uid}`);
+        const snapShot = await userRef.get();
+        return snapShot.data();
+    }
+
 
     render() {
         return (
             <>
-                <Topbar/>
-
+                <Topbar />
                 <br/>
                 <br/>
                 <br/>
                 <br/>
-
+                {console.log(this.user)}
                 <div id={"profile-container"}
                      style={{display: 'flex', height: '80vh', width: '80vw', justifyContent: ''}}>
                     <div id={"user-details"} style={{
@@ -40,8 +47,8 @@ export default class Profile extends React.Component {
                             padding: '15%',
                             alignContent: 'start'
                         }}>
-                            <img src={this.props.currentUser.photoURL} style={{'borderRadius': '50px'}}/>
-                            <h3 style={{display: 'inline', marginLeft: '5%'}}>{this.props.currentUser.displayName}</h3>
+                            {/*<img src={this.props.currentUser.photoURL} style={{'borderRadius': '50px'}}/>*/}
+                            {/*<h3 style={{display: 'inline', marginLeft: '5%'}}>{this.props.currentUser.displayName}</h3>*/}
                         </div>
                         <div style={{
                             display: 'flex',
@@ -52,7 +59,7 @@ export default class Profile extends React.Component {
                             alignContent: 'start'
                         }}>
                             <p>Joined at</p>
-                            <h3>{new Date(this.props.currentUser.createdAt.seconds * 1000).toDateString()}</h3>
+                            {/*<h3>{new Date(this.props.currentUser.createdAt.seconds * 1000).toDateString()}</h3>*/}
                         </div>
                     </div>
                     <div id={"user-statistics"} style={{
@@ -70,10 +77,10 @@ export default class Profile extends React.Component {
                             background: '#1b1b2f',
                             width: '100%'
                         }}>
-                            <ProfileStatsCard title={"Argumente"} value={this.props.currentUser.arguments}/>
-                            <ProfileStatsCard title={"Dezbateri"} value={this.props.currentUser.debatesStarted}/>
-                            <ProfileStatsCard title={"Comentarii"} value={this.props.currentUser.comments}/>
-                            <ProfileStatsCard title={"Aprecieri"} value={this.props.currentUser.totalLikes}/>
+                            {/*<ProfileStatsCard title={"Argumente"} value={this.props.currentUser.arguments}/>*/}
+                            {/*<ProfileStatsCard title={"Dezbateri"} value={this.props.currentUser.debatesStarted}/>*/}
+                            {/*<ProfileStatsCard title={"Comentarii"} value={this.props.currentUser.comments}/>*/}
+                            {/*<ProfileStatsCard title={"Aprecieri"} value={this.props.currentUser.totalLikes}/>*/}
                         </div>
                     </div>
                 </div>

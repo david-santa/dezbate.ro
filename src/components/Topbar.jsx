@@ -6,6 +6,7 @@ import {ExpandMore} from "@material-ui/icons";
 import {Link, Redirect} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 import {auth} from "../firebase/firebaseUtils";
+import firebase from "firebase";
 
 
 const styles = (theme) => ({
@@ -17,6 +18,7 @@ const styles = (theme) => ({
 class Topbar extends React.Component {
     constructor(props) {
         super(props);
+        console.log(props)
     }
 
     handleExpandMenu = (e) => {
@@ -32,7 +34,10 @@ class Topbar extends React.Component {
     }
 
     handleProfileClick = () => {
-        return <Redirect to={'/profile'}/>
+        return <Redirect to={{
+            pathname:"/profile",
+            search:"?hat=123321"
+        }}/>
     }
 
     state = {
@@ -70,7 +75,7 @@ class Topbar extends React.Component {
                             open={Boolean(this.state.menuAnchor)}
                             onClose={this.handleCloseMenu}
                         >
-                            <MenuItem><Link to={'/profile'}>Profile</Link></MenuItem>
+                            <MenuItem onClick><Link to={`/profile/`}>Profile</Link></MenuItem>
                             <MenuItem onClick={this.handleCloseMenu}>My account</MenuItem>
                             <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
                         </Menu>
