@@ -51,7 +51,10 @@ class App extends React.Component {
                     <Route path="/dashboard">
                         <Dashboard currentUser={this.state.currentUser}/>
                     </Route>
-                    <Route path={`/profile/:id`} component={Profile}/>
+                    {/*<Route path={`/profile`} component={Profile}/>*/}
+                    <Route path="/profile">
+                        <Profile currentUser={this.state.currentUser}/>
+                    </Route>
                 </Switch>
             </Router>
         );

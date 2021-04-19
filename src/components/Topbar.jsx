@@ -18,7 +18,6 @@ const styles = (theme) => ({
 class Topbar extends React.Component {
     constructor(props) {
         super(props);
-        console.log(props)
     }
 
     handleExpandMenu = (e) => {
@@ -34,10 +33,7 @@ class Topbar extends React.Component {
     }
 
     handleProfileClick = () => {
-        return <Redirect to={{
-            pathname:"/profile",
-            search:"?hat=123321"
-        }}/>
+
     }
 
     state = {
@@ -75,7 +71,8 @@ class Topbar extends React.Component {
                             open={Boolean(this.state.menuAnchor)}
                             onClose={this.handleCloseMenu}
                         >
-                            <MenuItem onClick><Link to={`/profile/`}>Profile</Link></MenuItem>
+                            {console.log(this.props)}
+                            <MenuItem onClick><Link to={`/profile?uid=${this.props.currentUser.id}`}>Profile</Link></MenuItem>
                             <MenuItem onClick={this.handleCloseMenu}>My account</MenuItem>
                             <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
                         </Menu>

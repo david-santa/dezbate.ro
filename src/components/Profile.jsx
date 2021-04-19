@@ -8,13 +8,32 @@ export default class Profile extends React.Component {
         super(props);
     }
 
-    componentDidMount() {
-            const { match: { params } } = this.props;
-            this.user = this.getUserData(params.id);
+    state = {
+        photoURL: null,
+        displayName: null,
+        createdAt: null,
+        argumente: null,
+        dezbateri: null,
+        comentarii: null,
+        aprecieri: null
     }
 
-    async getUserData(uid){
-        const userRef = firestore.doc(`users/${uid}`);
+    componentDidMount() {
+        // const { match: { params } } = this.props;
+        this.user = this.getUserData(this.props.location.search.slice(5)).then(r => {
+            let createdAtDate = new Date(r.createdAt.seconds * 1000);
+            this.setState({photoURL: r.photoURL,
+                displayName:r.displayName,
+            createdAt: createdAtDate.toDateString(),
+            argumente: r.arguments,
+            dezbateri: r.debatesStarted,
+            comentarii: r.comments,
+            aprecieri: r.totalLikes})
+        });
+    }
+
+    async getUserData(uid) {
+        const userRef = firestore.doc(`users/${this.props.location.search.slice(5)}`);
         const snapShot = await userRef.get();
         return snapShot.data();
     }
@@ -23,7 +42,7 @@ export default class Profile extends React.Component {
     render() {
         return (
             <>
-                <Topbar />
+                <Topbar currentUser={this.props.currentUser}/>
                 <br/>
                 <br/>
                 <br/>
@@ -47,8 +66,8 @@ export default class Profile extends React.Component {
                             padding: '15%',
                             alignContent: 'start'
                         }}>
-                            {/*<img src={this.props.currentUser.photoURL} style={{'borderRadius': '50px'}}/>*/}
-                            {/*<h3 style={{display: 'inline', marginLeft: '5%'}}>{this.props.currentUser.displayName}</h3>*/}
+                            <img src={this.state.photoURL} style={{'borderRadius': '50px'}}/>
+                            <h3 style={{display: 'inline', marginLeft: '5%'}}>{this.state.displayName}</h3>
                         </div>
                         <div style={{
                             display: 'flex',
@@ -59,7 +78,7 @@ export default class Profile extends React.Component {
                             alignContent: 'start'
                         }}>
                             <p>Joined at</p>
-                            {/*<h3>{new Date(this.props.currentUser.createdAt.seconds * 1000).toDateString()}</h3>*/}
+                            <h3>{this.state.createdAt}</h3>
                         </div>
                     </div>
                     <div id={"user-statistics"} style={{
@@ -77,10 +96,10 @@ export default class Profile extends React.Component {
                             background: '#1b1b2f',
                             width: '100%'
                         }}>
-                            {/*<ProfileStatsCard title={"Argumente"} value={this.props.currentUser.arguments}/>*/}
-                            {/*<ProfileStatsCard title={"Dezbateri"} value={this.props.currentUser.debatesStarted}/>*/}
-                            {/*<ProfileStatsCard title={"Comentarii"} value={this.props.currentUser.comments}/>*/}
-                            {/*<ProfileStatsCard title={"Aprecieri"} value={this.props.currentUser.totalLikes}/>*/}
+                            <ProfileStatsCard title={"Argumente"} value={this.state.argumente}/>
+                            <ProfileStatsCard title={"Dezbateri"} value={this.state.dezbateri}/>
+                            <ProfileStatsCard title={"Comentarii"} value={this.state.comentarii}/>
+                            <ProfileStatsCard title={"Aprecieri"} value={this.state.aprecieri}/>
                         </div>
                     </div>
                 </div>
