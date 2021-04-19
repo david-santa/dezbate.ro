@@ -45,7 +45,6 @@ class App extends React.Component {
                     <Route path="/dashboard">
                         <Dashboard/>
                     </Route>
-                    {/*<Route path={`/profile`} component={Profile}/>*/}
                     <Route path="/profile">
                         <Profile/>
                     </Route>

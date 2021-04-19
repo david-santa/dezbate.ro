@@ -32,11 +32,6 @@ class Topbar extends React.Component {
     handleLogout = () => {
         auth.signOut();
     }
-
-    handleProfileClick = () => {
-
-    }
-
     state = {
         menuAnchor: null
     }
@@ -47,7 +42,7 @@ class Topbar extends React.Component {
             <AppBar>
                 <Toolbar>
                     <img src={logoFaraText} height={"50px"}/>
-                    <Button size={"small"}
+                    <Button component={Link} to={'/dashboard'} size={"small"}
                             style={{
                                 padding: '10px 10px 10px 20px',
                                 'fontSize': 'min(2vw,16px)',
@@ -74,7 +69,7 @@ class Topbar extends React.Component {
                             onClose={this.handleCloseMenu}
                         >
                             {console.log(this.props)}
-                            {/*<MenuItem onClick><Link to={`/profile?uid=${this.props.currentUser.id}`}>Profile</Link></MenuItem>*/}
+                            <MenuItem component={Link} to ={{pathname:'/profile', search:`?uid=${this.props.currentUser.id}`}}>Profile</MenuItem>
                             <MenuItem onClick={this.handleCloseMenu}>My account</MenuItem>
                             <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
                         </Menu>

@@ -2,11 +2,15 @@ import React from 'react';
 import firebase, {firestore} from '../firebase/firebaseUtils';
 import ProfileStatsCard from "./ProfileStatsCard";
 import Topbar from "./Topbar";
+import {connect} from "react-redux";
 
-export default class Profile extends React.Component {
+class Profile extends React.Component {
     constructor(props) {
         super(props);
+        console.log(window.location.href.split("="))
     }
+
+    user = window.location.href.split("=")[1];
 
     state = {
         photoURL: null,
@@ -20,7 +24,7 @@ export default class Profile extends React.Component {
 
     componentDidMount() {
         // const { match: { params } } = this.props;
-        this.user = this.getUserData(this.props.location.search.slice(5)).then(r => {
+        this.user = this.getUserData(this.user).then(r => {
             let createdAtDate = new Date(r.createdAt.seconds * 1000);
             this.setState({photoURL: r.photoURL,
                 displayName:r.displayName,
@@ -33,7 +37,7 @@ export default class Profile extends React.Component {
     }
 
     async getUserData(uid) {
-        const userRef = firestore.doc(`users/${this.props.location.search.slice(5)}`);
+        const userRef = firestore.doc(`users/${this.user}`);
         const snapShot = await userRef.get();
         return snapShot.data();
     }
@@ -42,7 +46,7 @@ export default class Profile extends React.Component {
     render() {
         return (
             <>
-                <Topbar currentUser={this.props.currentUser}/>
+                <Topbar/>
                 <br/>
                 <br/>
                 <br/>
@@ -107,3 +111,9 @@ export default class Profile extends React.Component {
         )
     }
 }
+
+const mapStateToProps = ({user}) => ({
+    currentUser: user.currentUser
+})
+
+export default connect(mapStateToProps)(Profile)
