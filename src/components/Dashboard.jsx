@@ -24,7 +24,7 @@ export default class Dashboard extends React.Component {
         const {classes} = this.props;
         return (
             <div className={"dashboard_container"}>
-                <Topbar />
+                <Topbar/>
 
                 <br/>
                 <br/>
