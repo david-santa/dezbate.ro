@@ -17,22 +17,18 @@ export default class Dashboard extends React.Component {
 
     componentDidMount() {
         fetch("http://davidsanta.ro:3001/topics").then(res => res.json()).then(topics => this.setState({topicsArray: topics.message})).then(res => console.log(this.state.topicsArray));
+        console.log("COMPONENT DID MOUNT")
     }
 
     render() {
         const {classes} = this.props;
         return (
             <div className={"dashboard_container"}>
-                <Topbar currentUser={this.props.currentUser}/>
+                <Topbar />
 
                 <br/>
                 <br/>
                 <br/>
-
-                <div>
-                    {this.props.currentUser ?
-                        <></> : <Redirect to="/"/>}
-                </div>
 
                 <div style={{}}>
                     <Paper style={{display: 'flex', alignContent: 'center', padding: '30px', background: "#1b1b2f"}}>

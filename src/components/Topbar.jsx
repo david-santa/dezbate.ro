@@ -59,7 +59,8 @@ class Topbar extends React.Component {
                     <div style={{display: 'flex', flexDirection: "row", alignItems: 'center'}}
                          className={classes.snapRight}>
                         <p style={{'fontSize': 'min(2vw,16px)'}}
-                           className={classes.snapRight}>{this.props.currentUser ? this.props.currentUser.displayName === null ? this.props.currentUser.email : this.props.currentUser.displayName : <></>}</p>
+                           className={classes.snapRight}>
+                            {this.props.currentUser ? this.props.currentUser.displayName === null ? this.props.currentUser.email : this.props.currentUser.displayName : <></>}</p>
                         <img height={"35px"}
                              style={{"borderRadius": "50%", "marginLeft": "10px", position: "relative"}}
                              src={this.props.currentUser ? this.props.currentUser.photoURL : ""}/>
@@ -73,7 +74,7 @@ class Topbar extends React.Component {
                             onClose={this.handleCloseMenu}
                         >
                             {console.log(this.props)}
-                            <MenuItem onClick><Link to={`/profile?uid=${this.props.currentUser.id}`}>Profile</Link></MenuItem>
+                            {/*<MenuItem onClick><Link to={`/profile?uid=${this.props.currentUser.id}`}>Profile</Link></MenuItem>*/}
                             <MenuItem onClick={this.handleCloseMenu}>My account</MenuItem>
                             <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
                         </Menu>
@@ -85,8 +86,8 @@ class Topbar extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({
-    currentUser: state.user.currentUser
+const mapStateToProps = ({user}) => ({
+    currentUser: user.currentUser
 })
 
 export default connect(mapStateToProps)(withStyles(styles)(Topbar))
