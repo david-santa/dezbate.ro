@@ -6,34 +6,28 @@ import {Redirect, Switch, Route, BrowserRouter as Router} from 'react-router-dom
 import Dashboard from './components/Dashboard'
 import Profile from "./components/Profile";
 import firebase from "firebase";
+import {connect} from "react-redux";
+import {setCurrentUser} from "./redux/user/user.actions";
 
 class App extends React.Component {
 
-    constructor() {
-        super();
-
-        this.state = {
-            currentUser: firebase.auth().currentUser
-        }
-    }
 
     unsubscribeFromAuth = null;
 
     componentDidMount() {
+
+        const {setCurrentUser} = this.props;
         this.unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
             if (user) {
                 const userRef = await createUserProfileDocument(user);
                 userRef.onSnapshot(snapShot => {
-                    console.log(user)
-                    this.setState({
-                        currentUser: {
+                    setCurrentUser({
                             id: snapShot.id,
                             ...snapShot.data()
-                        }
-                    })
+                        })
                 })
             }
-            this.setState({currentUser: user});
+            setCurrentUser({user});
         })
     }
 
@@ -46,14 +40,14 @@ class App extends React.Component {
             <Router>
                 <Switch>
                     <Route exact path="/">
-                        {this.state.currentUser ? <Redirect to="/dashboard"/> : <Login/>}
+                        {this.props.currentUser?<Dashboard/>:<Login/>}
                     </Route>
                     <Route path="/dashboard">
-                        <Dashboard currentUser={this.state.currentUser}/>
+                        <Dashboard/>
                     </Route>
                     {/*<Route path={`/profile`} component={Profile}/>*/}
                     <Route path="/profile">
-                        <Profile currentUser={this.state.currentUser}/>
+                        <Profile/>
                     </Route>
                 </Switch>
             </Router>
@@ -61,4 +55,8 @@ class App extends React.Component {
     }
 }
 
-export default App;
+const mapDispatchToProps = dispatch => ({
+    setCurrentUser: user => dispatch(setCurrentUser(user))
+})
+
+export default connect(null,mapDispatchToProps)(App);

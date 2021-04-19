@@ -7,6 +7,7 @@ import {Link, Redirect} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 import {auth} from "../firebase/firebaseUtils";
 import firebase from "firebase";
+import {connect} from "react-redux";
 
 
 const styles = (theme) => ({
@@ -84,4 +85,8 @@ class Topbar extends React.Component {
     }
 }
 
-export default withStyles(styles)(Topbar)
+const mapStateToProps = state => ({
+    currentUser: state.user.currentUser
+})
+
+export default connect(mapStateToProps)(withStyles(styles)(Topbar))
