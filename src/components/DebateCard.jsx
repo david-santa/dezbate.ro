@@ -27,6 +27,7 @@ export default class DebateCard extends React.Component {
                                 marginRight: 'auto',
                                 width: '80%'}}
                             src={this.props.imagine}
+                            alt={"There should be an image here but it's currently unavailable"}
                         />
                     </CardMedia>
                     <CardContent>

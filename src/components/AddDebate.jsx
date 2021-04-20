@@ -27,7 +27,7 @@ class AddDebate extends React.Component {
                 "children:": [],
                 "arguments": 0,
                 "participants": 0,
-                "author": 'to be handled'
+                "author": this.props.currentUser.id
             }
             fetch("http://davidsanta.ro:3001/topics", {
                 method: 'POST',
