@@ -49,7 +49,7 @@ class Topbar extends React.Component {
 
                                 'color': '#ececec'
                             }}>Descopera</Button>
-                    <Button size={"large"} style={{padding: '10px', 'fontSize': 'min(2vw,16px)', 'color': '#ececec'}}>Incepe
+                    <Button component={Link} to={'/add'} size={"large"} style={{padding: '10px', 'fontSize': 'min(2vw,16px)', 'color': '#ececec'}}>Incepe
                         o dezbatere</Button>
                     <div style={{display: 'flex', flexDirection: "row", alignItems: 'center'}}
                          className={classes.snapRight}>
