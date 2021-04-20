@@ -15,8 +15,11 @@ class App extends React.Component {
 
     unsubscribeFromAuth = null;
 
-    componentDidMount() {
+    constructor() {
+        super();
+    }
 
+    componentDidMount() {
         const {setCurrentUser} = this.props;
         this.unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
             if (user) {
@@ -40,21 +43,11 @@ class App extends React.Component {
         return (
             <Router>
                 <Switch>
-                    <Route exact path="/" >
-                        <Dashboard/>
-                    </Route>
-                    <Route exact path='/login'>
-                        <Login/>
-                    </Route>
-                    <Route path="/dashboard">
-                        <Dashboard/>
-                    </Route>
-                    <Route path="/profile">
-                        <Profile/>
-                    </Route>
-                    <Route path="/add">
-                        <AddDebate/>
-                    </Route>
+                    <Route exact path="/" component={Dashboard}/>
+                    <Route exact path='/login' component={Login}/>
+                    <Route path="/dashboard" component={Dashboard}/>
+                    <Route path="/profile" component={Profile}/>
+                    <Route path="/add" component={AddDebate}/>
                 </Switch>
             </Router>
         );

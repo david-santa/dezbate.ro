@@ -32,9 +32,10 @@ class Topbar extends React.Component {
 
     handleLogout = () => {
         if (this.props.currentUser)
-            if (this.props.currentUser.user)
+            if (this.props.currentUser.user){
                 auth.signOut();
-        this.props.setCurrentUser(null)
+                this.props.setCurrentUser(null)
+            }
     }
 
     state = {
@@ -74,7 +75,6 @@ class Topbar extends React.Component {
                             open={Boolean(this.state.menuAnchor)}
                             onClose={this.handleCloseMenu}
                         >
-                            {console.log(this.props)}
                             {this.props.currentUser ? <MenuItem component={Link} to={{
                                 pathname: '/profile',
                                 search: `?uid=${this.props.currentUser.id}`
