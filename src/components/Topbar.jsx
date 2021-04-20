@@ -69,7 +69,10 @@ class Topbar extends React.Component {
                             onClose={this.handleCloseMenu}
                         >
                             {console.log(this.props)}
-                            <MenuItem component={Link} to ={{pathname:'/profile', search:`?uid=${this.props.currentUser.id}`}}>Profile</MenuItem>
+                            <MenuItem component={Link} to={{
+                                pathname: '/profile',
+                                search: `?uid=${this.props.currentUser.id}`
+                            }}>Profile</MenuItem>
                             <MenuItem onClick={this.handleCloseMenu}>My account</MenuItem>
                             <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
                         </Menu>
