@@ -8,8 +8,11 @@ import firebase from 'firebase';
 import {signInWithGoogle} from "../firebase/firebaseUtils";
 import {AccountCircle, Email, LockRounded} from "@material-ui/icons"
 import {CgFacebook, CgGoogle} from "react-icons/all";
+import {setCurrentUser} from "../redux/user/user.actions";
+import {connect} from "react-redux";
+import {Redirect} from "react-router-dom";
 
-export default class Login extends React.Component {
+class Login extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -34,7 +37,7 @@ export default class Login extends React.Component {
     handleEmailPassSignIn = () => {
         firebase.auth().signInWithEmailAndPassword(this.state.emailInput, this.state.passInput)
             .then((userCredential) => {
-                let user = userCredential.user
+                this.props.setCurrentUser(userCredential.user)
             })
             .catch((error) => {
                 var errorMessage = error.message;
@@ -54,6 +57,10 @@ export default class Login extends React.Component {
                 // ..
                 alert(errorMessage)
             });
+    }
+
+    handleSignInWithGoogle = () => {
+        signInWithGoogle().then(r => this.props.setCurrentUser(r.user)).then(r=>window.location.replace('/'));
     }
 
     render() {
@@ -109,7 +116,7 @@ export default class Login extends React.Component {
                                 color={"secondary"}
                                 variant={"contained"}>{this.state.isLogin ? "Log In" : "Sign up"}</Button>
                         <h5 align={'center'}>OR</h5>
-                        <Button onClick={signInWithGoogle} style={{background: 'white'}} variant={"contained"}>
+                        <Button onClick={this.handleSignInWithGoogle} style={{background: 'white'}} variant={"contained"}>
                             <CgGoogle/> {'\t Sign in with Google'} </Button>
                         <Button color="primary" onClick={signInWithGoogle} variant={"contained"}>
                             <CgFacebook/> {'\t Sign in with Facebook'} </Button>
@@ -122,3 +129,13 @@ export default class Login extends React.Component {
         );
     }
 }
+
+const mapStateToProps = ({user}) => ({
+    currentUser: user.currentUser
+})
+
+const mapDispatchToProps = dispatch => ({
+    setCurrentUser: user => dispatch(setCurrentUser(user))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

@@ -40,10 +40,12 @@ class App extends React.Component {
         return (
             <Router>
                 <Switch>
-                    <Route exact path="/" render={() => this.props.currentUser ? <Redirect to='/dashboard'/> :
-                        <Redirect to='/login'/>}/>
-                    <Route exact path='/login'
-                           render={() => this.props.currentUser ? (<Redirect to='/dashboard'/>) : (<Login/>)}/>
+                    <Route exact path="/" >
+                        <Dashboard/>
+                    </Route>
+                    <Route exact path='/login'>
+                        <Login/>
+                    </Route>
                     <Route path="/dashboard">
                         <Dashboard/>
                     </Route>

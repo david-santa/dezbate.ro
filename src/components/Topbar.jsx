@@ -8,6 +8,7 @@ import {withStyles} from "@material-ui/core/styles";
 import {auth} from "../firebase/firebaseUtils";
 import firebase from "firebase";
 import {connect} from "react-redux";
+import {setCurrentUser} from "../redux/user/user.actions";
 
 
 const styles = (theme) => ({
@@ -30,8 +31,12 @@ class Topbar extends React.Component {
     }
 
     handleLogout = () => {
-        auth.signOut();
+        if (this.props.currentUser)
+            if (this.props.currentUser.user)
+                auth.signOut();
+        this.props.setCurrentUser(null)
     }
+
     state = {
         menuAnchor: null
     }
@@ -49,7 +54,8 @@ class Topbar extends React.Component {
 
                                 'color': '#ececec'
                             }}>Descopera</Button>
-                    <Button component={Link} to={'/add'} size={"large"} style={{padding: '10px', 'fontSize': 'min(2vw,16px)', 'color': '#ececec'}}>Incepe
+                    <Button component={Link} to={'/add'} size={"large"}
+                            style={{padding: '10px', 'fontSize': 'min(2vw,16px)', 'color': '#ececec'}}>Incepe
                         o dezbatere</Button>
                     <div style={{display: 'flex', flexDirection: "row", alignItems: 'center'}}
                          className={classes.snapRight}>
@@ -69,12 +75,13 @@ class Topbar extends React.Component {
                             onClose={this.handleCloseMenu}
                         >
                             {console.log(this.props)}
-                            <MenuItem component={Link} to={{
+                            {this.props.currentUser ? <MenuItem component={Link} to={{
                                 pathname: '/profile',
                                 search: `?uid=${this.props.currentUser.id}`
-                            }}>Profile</MenuItem>
+                            }}>Profile</MenuItem> : <div/>}
                             <MenuItem onClick={this.handleCloseMenu}>My account</MenuItem>
-                            <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
+                            <MenuItem component={Link} to={'/login'} onClick={this.handleLogout}> Logout/Sign
+                                In </MenuItem>
                         </Menu>
 
                     </div>
@@ -88,4 +95,8 @@ const mapStateToProps = ({user}) => ({
     currentUser: user.currentUser
 })
 
-export default connect(mapStateToProps)(withStyles(styles)(Topbar))
+const mapDispatchToProps = dispatch => ({
+    setCurrentUser: user => dispatch(setCurrentUser(user))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Topbar))
