@@ -8,6 +8,8 @@ import Profile from "./components/Profile";
 import firebase from "firebase";
 import {connect} from "react-redux";
 import {setCurrentUser} from "./redux/user/user.actions";
+import {Add} from "@material-ui/icons";
+import AddDebate from "./components/AddDebate";
 
 class App extends React.Component {
 
@@ -47,6 +49,9 @@ class App extends React.Component {
                     </Route>
                     <Route path="/profile">
                         <Profile/>
+                    </Route>
+                    <Route path="/add">
+                        <AddDebate/>
                     </Route>
                 </Switch>
             </Router>
