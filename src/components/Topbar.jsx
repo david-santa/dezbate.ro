@@ -31,11 +31,9 @@ class Topbar extends React.Component {
     }
 
     handleLogout = () => {
-        if (this.props.currentUser)
-            if (this.props.currentUser.user){
-                auth.signOut();
-                this.props.setCurrentUser(null)
-            }
+        auth.signOut();
+        this.props.setCurrentUser(null)
+
     }
 
     state = {

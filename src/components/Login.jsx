@@ -37,7 +37,11 @@ class Login extends React.Component {
     handleEmailPassSignIn = () => {
         firebase.auth().signInWithEmailAndPassword(this.state.emailInput, this.state.passInput)
             .then((userCredential) => {
+                console.log(userCredential)
                 this.props.setCurrentUser(userCredential.user)
+                if(userCredential.user){
+                    window.location.replace('/')
+                }
             })
             .catch((error) => {
                 var errorMessage = error.message;
