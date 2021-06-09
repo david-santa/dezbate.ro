@@ -5,6 +5,7 @@ import {Paper} from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import DebateCard from "./DebateCard";
 import Topbar from "./Topbar";
+import {Link} from 'react-router-dom'
 
 export default class Dashboard extends React.Component {
     constructor(props) {
@@ -33,17 +34,21 @@ export default class Dashboard extends React.Component {
                 <br/>
 
                 <div style={{}}>
-                    <Paper style={{display: 'flex', alignContent: 'center', padding: '30px', background: "#1b1b2f"}}>
+
+                    <Paper
+                        style={{display: 'flex', alignContent: 'center', padding: '30px', background: "#1b1b2f"}}>
                         <Grid container spacing={3} direction='row' justify='center' alignItems='center'>
                             {this.state.topicsArray.map(item => <Grid item key={item._id}>
-                                <DebateCard titlu={item.title} imagine={item.imageURL}
-                                            vizualizari={item.views} participanti={item.participants}
-                                            argumente={item.arguments}>
-
-                                </DebateCard>
+                                <Link to={'/debate?uid=' + item._id}>
+                                    <DebateCard titlu={item.title} imagine={item.imageURL}
+                                                vizualizari={item.views} participanti={item.participants}
+                                                argumente={item.arguments}>
+                                    </DebateCard>
+                                </Link>
                             </Grid>)}
                         </Grid>
                     </Paper>
+
                 </div>
 
 
