@@ -1,5 +1,5 @@
 import {connect} from "react-redux";
-import {withStyles} from "@material-ui/core";
+import {createMuiTheme, MuiThemeProvider, withStyles} from "@material-ui/core";
 import React from "react";
 
 const styles = (theme) => ({
@@ -10,6 +10,11 @@ const styles = (theme) => ({
     }
 })
 
+const customTheme = createMuiTheme({
+    palette: {
+        type: 'dark'
+    }
+})
 
 class Debate extends React.Component {
 
@@ -28,9 +33,11 @@ class Debate extends React.Component {
     render() {
         console.log(this.debate);
         return (
-            <div>
-                Hello
-            </div>
+            <MuiThemeProvider theme={customTheme}>
+                <div>
+                    Hello
+                </div>
+            </MuiThemeProvider>
         )
     }
 }
