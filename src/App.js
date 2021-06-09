@@ -10,6 +10,7 @@ import {connect} from "react-redux";
 import {setCurrentUser} from "./redux/user/user.actions";
 import {Add} from "@material-ui/icons";
 import AddDebate from "./components/AddDebate";
+import Debate from "./components/Debate";
 
 class App extends React.Component {
 
@@ -48,6 +49,7 @@ class App extends React.Component {
                     <Route path="/dashboard" component={Dashboard}/>
                     <Route path="/profile" component={Profile}/>
                     <Route path="/add" component={AddDebate}/>
+                    <Route path="/debate" component={Debate}/>
                 </Switch>
             </Router>
         );

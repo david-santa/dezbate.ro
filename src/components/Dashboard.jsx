@@ -18,7 +18,6 @@ export default class Dashboard extends React.Component {
 
     componentDidMount() {
         fetch("http://davidsanta.ro:3001/topics").then(res => res.json()).then(topics => this.setState({topicsArray: topics.message})).then(res => console.log(this.state.topicsArray));
-        console.log("COMPONENT DID MOUNT")
         if(this.props.currentUser) if(this.props.currentUser.user) this.setState({signedIn: true})
         console.log(this.state.signedIn)
     }
