@@ -28,27 +28,40 @@ class AddDebate extends React.Component {
         typeInput: 'Sport',
     }
 
+    validateInput = () => {
+        if (this.state.titleInput.length < 5)
+            return "Eroare Titlu";
+        else if (this.state.descriptionInput.length < 5)
+            return "Eroare Descriere";
+        else
+            return "valid";
+    }
 
     handleSubmit = () => {
-        const data = {
-            "title": this.state.titleInput,
-            "description": this.state.descriptionInput,
-            "imageURL": this.state.imageURLInput,
-            "views": 0,
-            "veracityVotes": [],
-            "comments": [],
-            "children:": [],
-            "arguments": 0,
-            "participants": 0,
-            "author": this.props.currentUser.id
-        }
-        fetch("http://davidsanta.ro:3001/topics", {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
+        if (this.validateInput() === "valid") {
+            const data = {
+                "title": this.state.titleInput,
+                "description": this.state.descriptionInput,
+                "imageURL": this.state.imageURLInput,
+                "views": 0,
+                "veracityVotes": [],
+                "comments": [],
+                "children:": [],
+                "arguments": 0,
+                "participants": 0,
+                "author": this.props.currentUser.id
             }
-        }).then(res => res.json()).then(data => console.log(data));
+            fetch("http://davidsanta.ro:3001/topics", {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(res => res.json()).then(alert("Dezbaterea a fost adaugata")).catch(error => alert(error));
+            this.props.history.push('/');
+        } else {
+            alert(this.validateInput());
+        }
     }
 
     handleInput = (e) => {
@@ -57,9 +70,9 @@ class AddDebate extends React.Component {
 
     render() {
         const {classes} = this.props;
-        const customTheme=createMuiTheme({
-            palette:{
-                type:'dark'
+        const customTheme = createMuiTheme({
+            palette: {
+                type: 'dark'
             }
         })
         return (
@@ -76,7 +89,12 @@ class AddDebate extends React.Component {
                     <form autoComplete={"on"}>
                         <div style={{display: "flex", flexDirection: 'column'}}>
                             <div id={"firstRow"}
-                                 style={{paddingLeft: '20vw', paddingRight: '20vw', display: "flex", flexDirection: 'row'}}>
+                                 style={{
+                                     paddingLeft: '20vw',
+                                     paddingRight: '20vw',
+                                     display: "flex",
+                                     flexDirection: 'row'
+                                 }}>
                                 <TextField required id={"titleInput"} label={"Titlu"} onChange={this.handleInput}
                                            variant={'outlined'}
                                            style={{
@@ -87,16 +105,22 @@ class AddDebate extends React.Component {
                                            onChange={this.handleInput}
                                            style={{marginBottom: '1vh', marginRight: '3vw'}}/>
 
-                                <TextField id={"categoryInput"}  variant={'outlined'} label={"Categorie"}
+                                <TextField id={"categoryInput"} variant={'outlined'} label={"Categorie"}
                                            onChange={this.handleInput}
                                 />
                             </div>
 
                             <div id={"secondRow"}
-                                 style={{paddingLeft: '20vw', paddingRight: '20vw', display: "flex", flexDirection: 'row'}}>
+                                 style={{
+                                     paddingLeft: '20vw',
+                                     paddingRight: '20vw',
+                                     display: "flex",
+                                     flexDirection: 'row'
+                                 }}>
                                 <TextField multiline rows={8} id={"descriptionInput"} onChange={this.handleInput}
                                            variant={'outlined'}
-                                           style={{marginBottom: '1vh', width: '100vw', color:'white'}} label={"Descriere"}/>
+                                           style={{marginBottom: '1vh', width: '100vw', color: 'white'}}
+                                           label={"Descriere"}/>
                             </div>
 
 
