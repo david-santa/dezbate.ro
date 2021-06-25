@@ -18,7 +18,9 @@ const customTheme = createMuiTheme({
 
 class Debate extends React.Component {
 
-    debate = window.location.href.split("=")[1];
+    debateId = window.location.href.split("=")[1];
+    debate;
+    arguments;
 
     constructor(props) {
         super(props);
@@ -27,11 +29,19 @@ class Debate extends React.Component {
     state = {}
 
     componentDidMount() {
-        fetch("http://davidsanta.ro:3001/topics" + "/" + this.debate).then(res => res.json()).then(debate => console.log(debate));
+        fetch("http://davidsanta.ro:3001/topics" + "/" + this.debateId).then(res => res.json()).then(debate => {
+            this.debate = debate;
+            this.arguments = this.debate.message.children;
+            for (let i = 0; i < this.arguments.length; i++) {
+                console.log(this.arguments[i])
+                fetch("http://davidsanta.ro:3001/arguments/" + this.arguments[i]).then(res=> res.json()).then(
+                    argument => console.log(argument)
+                )
+            }
+        }).catch(err => console.log(err));
     }
 
     render() {
-        console.log(this.debate);
         return (
             <MuiThemeProvider theme={customTheme}>
                 <div>
