@@ -257,7 +257,7 @@ class Debate extends React.Component {
                                             <CardActions>
                                                 <Tooltip title={'Apreciaza'}>
                                                     <IconButton size={"small"}>
-                                                        <ThumbUp/>
+                                                        <ThumbUp/> {value.likes}
                                                     </IconButton>
                                                 </Tooltip>
                                                 <Tooltip title={'Raporteaza o problema'}>
@@ -287,8 +287,35 @@ class Debate extends React.Component {
                                     <Grid key={index} item>
                                         <Card style={{width: '100%', background: '#1f4068'}}>
                                             <CardContent>
+                                                <Slider
+                                                    disabled={true}
+                                                    value={this.calculateImpact(value.impactVotes)}
+                                                    min={1.0}
+                                                    max={5.0}
+                                                    step={1}
+                                                    marks={this.sliderMarks}
+                                                    style={{width: '7.5vw'}}
+                                                />
+                                                <br/>
                                                 {value.content}
                                             </CardContent>
+                                            <CardActions>
+                                                <Tooltip title={'Apreciaza'}>
+                                                    <IconButton size={"small"}>
+                                                        <ThumbUp/> {value.likes}
+                                                    </IconButton>
+                                                </Tooltip>
+                                                <Tooltip title={'Raporteaza o problema'}>
+                                                    <IconButton size={"small"}>
+                                                        <Report/>
+                                                    </IconButton>
+                                                </Tooltip>
+                                                <Tooltip title={'Noteaza impact'}>
+                                                    <IconButton size={"small"}>
+                                                        <Grade/>
+                                                    </IconButton>
+                                                </Tooltip>
+                                            </CardActions>
                                         </Card>
                                     </Grid>
                                 ))}
