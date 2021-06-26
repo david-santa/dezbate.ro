@@ -53,7 +53,8 @@ class Login extends React.Component {
         firebase.auth().createUserWithEmailAndPassword(this.state.emailInput, this.state.passInput)
             .then((result) => {
                 return result.user.updateProfile({
-                    displayName: this.state.userInput
+                    displayName: this.state.userInput,
+                    isAdmin: false
                 })
             })
             .catch((error) => {
