@@ -7,15 +7,17 @@ import {
     IconButton,
     Menu,
     MenuItem,
-    Typography
+    Typography, withStyles
 } from "@material-ui/core";
 import {Chat, GroupSharp, MoreVert, Visibility} from "@material-ui/icons";
 import React from "react";
 import {Link} from "react-router-dom";
+import {connect} from "react-redux";
 
-export default class DebateCard extends React.Component {
+class DebateCard extends React.Component {
     constructor(props) {
         super(props);
+        console.log(this.props)
     }
 
     state = {
@@ -32,6 +34,10 @@ export default class DebateCard extends React.Component {
 
     handleReport = () => {
         console.log("report")
+    }
+
+    handleDelete = () =>{
+        console.log('deleted')
     }
 
     render() {
@@ -56,6 +62,8 @@ export default class DebateCard extends React.Component {
                         onClose={this.handleClose}
                     >
                         <MenuItem onClick={this.handleReport}> Raporteaza o problema </MenuItem>
+                        {this.props.currentUser? (this.props.currentUser.displayName==='Şanta David'?<MenuItem onClick={this.handleDelete}>Delete Debate</MenuItem>:null) :  null}
+                        {/*{this.props.currentUser.displayName==='Şanta David'?<MenuItem onClick={this.handleReport}> Raporteaza o problema </MenuItem>:<></>}*/}
                     </Menu>
                     <CardMedia>
                         <Link to={'/debate?uid=' + this.props.id} style={{textDecoration: 'none'}}>
@@ -89,5 +97,10 @@ export default class DebateCard extends React.Component {
             </div>
         );
     }
-
 }
+
+const mapStateToProps = ({user}) => ({
+    currentUser: user.currentUser
+})
+
+export default connect(mapStateToProps)(DebateCard);
