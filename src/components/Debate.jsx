@@ -57,6 +57,8 @@ class Debate extends React.Component {
         let conargumentstemp = [];
         fetch("http://davidsanta.ro:3001/topics" + "/" + this.debateId).then(res => res.json()).then(debate => {
             this.setState({debate: debate.message});
+            let newViews = debate.message.views + 1;
+            axios.put("http://davidsanta.ro:3001/topics/"+this.debateId,{views:newViews});
             this.argumentIds = debate.message.children;
             for (let i = 0; i < this.argumentIds.length; i++) {
                 fetch("http://davidsanta.ro:3001/arguments/" + this.argumentIds[i]).then(res => res.json()).then(
