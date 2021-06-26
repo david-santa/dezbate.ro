@@ -39,12 +39,12 @@ export default class Dashboard extends React.Component {
                         style={{display: 'flex', alignContent: 'center', padding: '30px', background: "#1b1b2f"}}>
                         <Grid container spacing={3} direction='row' justify='center' alignItems='center'>
                             {this.state.topicsArray.map(item => <Grid item key={item._id}>
-                                <Link to={'/debate?uid=' + item._id} style={{ textDecoration: 'none' }}>
-                                    <DebateCard titlu={item.title} imagine={item.imageURL}
+                                {/*<Link to={'/debate?uid=' + item._id} style={{textDecoration: 'none'}}>*/}
+                                    <DebateCard id={item._id} titlu={item.title} imagine={item.imageURL}
                                                 vizualizari={item.views} participanti={item.participants}
                                                 argumente={item.arguments}>
                                     </DebateCard>
-                                </Link>
+                                {/*</Link>*/}
                             </Grid>)}
                         </Grid>
                     </Paper>
