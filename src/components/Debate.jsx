@@ -75,12 +75,12 @@ class Debate extends React.Component {
                     <Topbar/>
                 </div>
                 <br/> <br/> <br/>
-                <div style={{margin: '5vh 20vw 0vh 20vw'}}>
+                <div style={{margin: '5vh 20vw 0vh 20vw', 'fontSize': 'min(2vw,16px)'}}>
                     <Grid container justify={"center"} direction={"column"} alignItems={"center"} spacing={1}
-                          style={{background: '#3f51b5'}}>
+                          style={{background: '#3f51b5', 'fontSize': 'min(2vw,16px)', borderRadius:' 8px'}}>
                         <Grid item style={{background: '#3f51b5'}}>
                             <Typography variant={"h4"} gutterBottom
-                                        style={{textAlign: "center"}}>
+                                        style={{textAlign: "center", color:"#fff", 'fontSize': 'min(2vw,64px)'}}>
                                 {this.state.debate.title}
                             </Typography>
                         </Grid>
@@ -93,7 +93,7 @@ class Debate extends React.Component {
                                       marginBottom: '1vh',
                                       paddingTop: '1vh'
                                   }}>
-                                <Button variant='outlined' style={{background: '#41cc90', width:'100%'}}>
+                                <Button variant='outlined' style={{background: '#41cc90', width:'100%', 'fontSize': 'min(2vw,12px)'}}>
                                     Adauga argument pro
                                 </Button>
                                 {this.state.proArgumentsArray.map((value, index) => (
@@ -110,7 +110,7 @@ class Debate extends React.Component {
                             <Grid container justify={"flex-start"} direction={"column"} alignItems={""}
                                   spacing={2}
                                   style={{maxWidth: '20vw', marginLeft: '1vw', marginBottom: '1vh', paddingTop: '1vh'}}>
-                                <Button variant='outlined' style={{background: '#ff725c'}}>
+                                <Button variant='outlined' style={{background: '#ff725c', width:'100%', 'fontSize': 'min(2vw,12px)'}}>
                                     Adauga argument contra
                                 </Button>
                                 {this.state.conArgumentsArray.map((value, index) => (
