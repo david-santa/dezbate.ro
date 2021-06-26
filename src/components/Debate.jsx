@@ -1,11 +1,11 @@
 import {connect} from "react-redux";
 import {
-    Card,
+    Card, CardActions,
     CardContent,
     createMuiTheme, Dialog, DialogActions, DialogContent, DialogTitle,
-    Divider,
+    Divider, IconButton,
     MuiThemeProvider,
-    Paper, TextField,
+    Paper, Slider, TextField, Tooltip,
     Typography,
     withStyles
 } from "@material-ui/core";
@@ -14,6 +14,7 @@ import Topbar from "./Topbar";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
+import {Grade, Report, ThumbUp} from "@material-ui/icons";
 
 const styles = (theme) => ({
     fontClr: {
@@ -129,6 +130,39 @@ class Debate extends React.Component {
         this.setState({argumentField: ''})
     }
 
+    sliderMarks = [
+        {
+            value: 0,
+            label: '0'
+        },
+        {
+            value: 2
+        },
+        {
+            value: 1,
+            label: '1'
+        },
+        {
+            value: 3,
+            label: '3'
+        },
+        {
+            value: 4
+        },
+        {
+            value: 5,
+            label: '5'
+        }
+    ]
+
+    calculateImpact = (arr) =>{
+        let sum = 0;
+        for (const grade in arr) {
+            sum+=grade
+        }
+        return sum/arr.length
+    }
+
     render() {
         return (
             <MuiThemeProvider theme={customTheme}>
@@ -208,8 +242,35 @@ class Debate extends React.Component {
                                     <Grid key={index} direction={"column"} item>
                                         <Card style={{maxWidth: '100%', background: '#1f4068'}}>
                                             <CardContent>
+                                                <Slider
+                                                    disabled={true}
+                                                    value={this.calculateImpact(value.impactVotes)}
+                                                    min={1.0}
+                                                    max={5.0}
+                                                    step={1}
+                                                    marks={this.sliderMarks}
+                                                    style={{width: '7.5vw'}}
+                                                />
+                                                <br/>
                                                 {value.content}
                                             </CardContent>
+                                            <CardActions>
+                                                <Tooltip title={'Apreciaza'}>
+                                                    <IconButton size={"small"}>
+                                                        <ThumbUp/>
+                                                    </IconButton>
+                                                </Tooltip>
+                                                <Tooltip title={'Raporteaza o problema'}>
+                                                    <IconButton size={"small"}>
+                                                        <Report/>
+                                                    </IconButton>
+                                                </Tooltip>
+                                                <Tooltip title={'Noteaza impact'}>
+                                                    <IconButton size={"small"}>
+                                                        <Grade/>
+                                                    </IconButton>
+                                                </Tooltip>
+                                            </CardActions>
                                         </Card>
                                     </Grid>
                                 ))}
