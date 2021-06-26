@@ -13,6 +13,8 @@ import {Chat, GroupSharp, MoreVert, Visibility} from "@material-ui/icons";
 import React from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
+import axios from "axios";
+import Dashboard from "./Dashboard";
 
 class DebateCard extends React.Component {
     constructor(props) {
@@ -37,7 +39,10 @@ class DebateCard extends React.Component {
     }
 
     handleDelete = () =>{
-        console.log('deleted')
+        axios.delete("http://davidsanta.ro:3001/topics/"+this.props.id).then(res=>{
+            alert("Debate Deleted");
+            this.setState({anchorEl:null})
+        })
     }
 
     render() {
