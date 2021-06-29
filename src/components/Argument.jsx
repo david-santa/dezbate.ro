@@ -84,8 +84,8 @@ class Argument extends React.Component {
         return sum / arr.length
     }
 
-    handleChangeArgument = () =>{
-        console.log('hau')
+    handleChangeArgument = (value) =>{
+        window.location.href='/argument?uid='+value._id
     }
 
     render() {
@@ -98,6 +98,9 @@ class Argument extends React.Component {
                 <div style={{margin: '5vh 20vw 0vh 20vw', 'fontSize': 'min(2vw,16px)'}}>
                     <Grid container justify={"center"} direction={"column"} alignItems={"center"} spacing={1}
                           style={{background: '#3f51b5', 'fontSize': 'min(2vw,16px)', borderRadius: ' 8px'}}>
+                        <Button>
+                            Revino la dezbatere
+                        </Button>
                         <Grid item style={{background: '#3f51b5'}}>
                             <Typography variant={"h4"} gutterBottom
                                         style={{textAlign: "center", color: "#fff", 'fontSize': 'min(2vw,64px)'}}>
@@ -198,7 +201,7 @@ class Argument extends React.Component {
                                                         style={{width: '7.5vw'}}
                                                     />
                                                     <br/>
-                                                    <Typography onClick={window.location.href='/argument?uid='+value._id} color={'textPrimary'}>
+                                                    <Typography onClick={() => this.handleChangeArgument(value)} color={'textPrimary'}>
                                                         {value.content}
                                                     </Typography>
                                                 </CardContent>
