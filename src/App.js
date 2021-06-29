@@ -11,6 +11,7 @@ import {setCurrentUser} from "./redux/user/user.actions";
 import {Add} from "@material-ui/icons";
 import AddDebate from "./components/AddDebate";
 import Debate from "./components/Debate";
+import Argument from "./components/Argument";
 
 class App extends React.Component {
 
@@ -50,6 +51,7 @@ class App extends React.Component {
                     <Route path="/profile" component={Profile}/>
                     <Route path="/add" component={AddDebate}/>
                     <Route path="/debate" component={Debate}/>
+                    <Route path="/argument" component={Argument}/>
                 </Switch>
             </Router>
         );

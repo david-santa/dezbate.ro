@@ -1,5 +1,14 @@
 import {createMuiTheme, withStyles} from "@material-ui/core";
 import {connect} from "react-redux";
+import React from 'react';
+
+const styles = (theme) => ({
+    fontClr: {
+        color: '#000000',
+        textShadow: '0px 0px #ffffff',
+        fontSize: '0px'
+    }
+})
 
 const customTheme = createMuiTheme({
     palette: {

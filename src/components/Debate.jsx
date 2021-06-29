@@ -16,6 +16,7 @@ import Button from "@material-ui/core/Button";
 import axios from "axios";
 import {Grade, Report, ThumbUp} from "@material-ui/icons";
 import firebase from "firebase";
+import {Link} from 'react-router-dom'
 
 const db = firebase.firestore();
 
@@ -250,19 +251,25 @@ class Debate extends React.Component {
                                 {this.state.proArgumentsArray.map((value, index) => (
                                     <Grid key={index} direction={"column"} item>
                                         <Card style={{maxWidth: '100%', background: '#1f4068'}}>
-                                            <CardContent>
-                                                <Slider
-                                                    disabled={true}
-                                                    value={this.calculateImpact(value.impactVotes)}
-                                                    min={1.0}
-                                                    max={5.0}
-                                                    step={1}
-                                                    marks={this.sliderMarks}
-                                                    style={{width: '7.5vw'}}
-                                                />
-                                                <br/>
-                                                {value.content}
-                                            </CardContent>
+                                            <Link to={'/argument?uid=' + value._id}
+                                                  style={{textDecoration: 'none'}}>
+                                                <CardContent>
+                                                    <Slider
+                                                        disabled={true}
+                                                        value={this.calculateImpact(value.impactVotes)}
+                                                        min={1.0}
+                                                        max={5.0}
+                                                        step={1}
+                                                        marks={this.sliderMarks}
+                                                        style={{width: '7.5vw'}}
+                                                    />
+                                                    <br/>
+                                                    <Typography color={'textPrimary'}>
+                                                        {value.content}
+                                                    </Typography>
+
+                                                </CardContent>
+                                            </Link>
                                             <CardActions>
                                                 <Tooltip title={'Apreciaza'}>
                                                     <IconButton onClick={() => {
@@ -274,7 +281,7 @@ class Debate extends React.Component {
                                                             axios.put("http://davidsanta.ro:3001/arguments/" + value._id, {likes: value.likes + 1})
                                                             let temp = this.state.likedArguments;
                                                             temp.push(value._id);
-                                                            this.setState({likedArguments:temp})
+                                                            this.setState({likedArguments: temp})
                                                             db.collection("users").doc(this.props.currentUser.id).update({
                                                                 likedArguments: this.state.likedArguments
                                                             })
@@ -309,19 +316,23 @@ class Debate extends React.Component {
                                 {this.state.conArgumentsArray.map((value, index) => (
                                     <Grid key={index} item>
                                         <Card style={{width: '100%', background: '#1f4068'}}>
-                                            <CardContent>
-                                                <Slider
-                                                    disabled={true}
-                                                    value={this.calculateImpact(value.impactVotes)}
-                                                    min={1.0}
-                                                    max={5.0}
-                                                    step={1}
-                                                    marks={this.sliderMarks}
-                                                    style={{width: '7.5vw'}}
-                                                />
-                                                <br/>
-                                                {value.content}
-                                            </CardContent>
+                                            <Link to={'/argument?uid=' + value._id} style={{textDecoration: 'none'}}>
+                                                <CardContent>
+                                                    <Slider
+                                                        disabled={true}
+                                                        value={this.calculateImpact(value.impactVotes)}
+                                                        min={1.0}
+                                                        max={5.0}
+                                                        step={1}
+                                                        marks={this.sliderMarks}
+                                                        style={{width: '7.5vw'}}
+                                                    />
+                                                    <br/>
+                                                    <Typography color={'textPrimary'}>
+                                                        {value.content}
+                                                    </Typography>
+                                                </CardContent>
+                                            </Link>
                                             <CardActions>
                                                 <Tooltip title={'Apreciaza'}>
                                                     <IconButton size={"small"}>
