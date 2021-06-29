@@ -88,6 +88,10 @@ class Argument extends React.Component {
         window.location.href='/argument?uid='+value._id
     }
 
+    handleBackToDebate = () =>{
+        window.location.href='/debate?uid='+this.state.argument.topic;
+    }
+
     render() {
         return (
             <MuiThemeProvider theme={customTheme}>
@@ -98,9 +102,12 @@ class Argument extends React.Component {
                 <div style={{margin: '5vh 20vw 0vh 20vw', 'fontSize': 'min(2vw,16px)'}}>
                     <Grid container justify={"center"} direction={"column"} alignItems={"center"} spacing={1}
                           style={{background: '#3f51b5', 'fontSize': 'min(2vw,16px)', borderRadius: ' 8px'}}>
-                        <Button>
-                            Revino la dezbatere
-                        </Button>
+                        <br/>
+                        <Link to={'/debate?uid='+this.state.argument.topic} style={{textDecoration:'null'}}>
+                            <Button style={{background:'#1b1b2f'}}>
+                                Revino la dezbatere
+                            </Button>
+                        </Link>
                         <Grid item style={{background: '#3f51b5'}}>
                             <Typography variant={"h4"} gutterBottom
                                         style={{textAlign: "center", color: "#fff", 'fontSize': 'min(2vw,64px)'}}>
