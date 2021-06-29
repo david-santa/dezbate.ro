@@ -5,7 +5,7 @@ import loginImage from "../res/debateLoginBg.png"
 import logo from "../res/logoDezbateRo.png"
 import Button from "@material-ui/core/Button";
 import firebase from 'firebase';
-import {signInWithGoogle} from "../firebase/firebaseUtils";
+import {signInWithFacebook, signInWithGoogle} from "../firebase/firebaseUtils";
 import {AccountCircle, Email, LockRounded} from "@material-ui/icons"
 import {CgFacebook, CgGoogle} from "react-icons/all";
 import {setCurrentUser} from "../redux/user/user.actions";
@@ -68,6 +68,10 @@ class Login extends React.Component {
         signInWithGoogle().then(r => this.props.setCurrentUser(r.user)).then(r=>window.location.replace('/'));
     }
 
+    handleSignInWithFacebook = () => {
+        signInWithFacebook().then(r => this.props.setCurrentUser(r.user)).then(r=>window.location.replace('/'));
+    }
+
     render() {
         return (
             <Grid container>
@@ -123,7 +127,7 @@ class Login extends React.Component {
                         <h5 align={'center'}>OR</h5>
                         <Button onClick={this.handleSignInWithGoogle} style={{background: 'white'}} variant={"contained"}>
                             <CgGoogle/> {'\t Sign in with Google'} </Button>
-                        <Button color="primary" onClick={signInWithGoogle} variant={"contained"}>
+                        <Button color="primary" onClick={this.handleSignInWithFacebook} variant={"contained"}>
                             <CgFacebook/> {'\t Sign in with Facebook'} </Button>
                         <Button onClick={this.handleSwitchButton}
                                 style={{color: 'aliceblue'}}> {this.state.isLogin ? "Don't have an account? Sign Up" : "Already have an account? Log In"} </Button>
