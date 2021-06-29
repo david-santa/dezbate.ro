@@ -67,7 +67,7 @@ class DebateCard extends React.Component {
                         onClose={this.handleClose}
                     >
                         <MenuItem onClick={this.handleReport}> Raporteaza o problema </MenuItem>
-                        {this.props.currentUser? (this.props.currentUser.displayName==='Şanta David'?<MenuItem onClick={this.handleDelete}>Delete Debate</MenuItem>:null) :  null}
+                        {this.props.currentUser? (this.props.currentUser.displayName==='Şanta David'?<MenuItem onClick={this.handleDelete}>Sterge Dezbatere</MenuItem>:null) :  null}
                         {/*{this.props.currentUser.displayName==='Şanta David'?<MenuItem onClick={this.handleReport}> Raporteaza o problema </MenuItem>:<></>}*/}
                     </Menu>
                     <CardMedia>
