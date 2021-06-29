@@ -36,6 +36,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
                 arguments: 0,
                 comments: 0,
                 totalLikes: 0,
+                likedArguments: [],
                 ...additionalData
             })
         } catch (e) {

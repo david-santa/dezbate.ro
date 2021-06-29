@@ -15,6 +15,9 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
 import {Grade, Report, ThumbUp} from "@material-ui/icons";
+import firebase from "firebase";
+
+const db = firebase.firestore();
 
 const styles = (theme) => ({
     fontClr: {
@@ -46,11 +49,13 @@ class Debate extends React.Component {
         conArgumentsArray: [],
         openDialogPro: false,
         openDialogCon: false,
-        argumentField: ''
+        argumentField: '',
+        likedArguments: []
     }
 
     componentDidMount() {
         this.fetchData();
+        this.setState({likedArguments: this.props.currentUser.likedArguments})
     }
 
     fetchData() {
@@ -155,12 +160,16 @@ class Debate extends React.Component {
         }
     ]
 
-    calculateImpact = (arr) =>{
+    calculateImpact = (arr) => {
         let sum = 0;
         for (const grade in arr) {
-            sum+=grade
+            sum += grade
         }
-        return sum/arr.length
+        return sum / arr.length
+    }
+
+    handleLike = () => {
+
     }
 
     render() {
@@ -256,7 +265,21 @@ class Debate extends React.Component {
                                             </CardContent>
                                             <CardActions>
                                                 <Tooltip title={'Apreciaza'}>
-                                                    <IconButton size={"small"}>
+                                                    <IconButton onClick={() => {
+                                                        console.log(this.state.likedArguments)
+                                                        console.log(this.state.likedArguments.indexOf(value._id))
+                                                        if (this.state.likedArguments.indexOf(value._id) > -1) {
+                                                            alert("Deja ai apreciat acest argument")
+                                                        } else {
+                                                            axios.put("http://davidsanta.ro:3001/arguments/" + value._id, {likes: value.likes + 1})
+                                                            let temp = this.state.likedArguments;
+                                                            temp.push(value._id);
+                                                            this.setState({likedArguments:temp})
+                                                            db.collection("users").doc(this.props.currentUser.id).update({
+                                                                likedArguments: this.state.likedArguments
+                                                            })
+                                                        }
+                                                    }} size={"small"}>
                                                         <ThumbUp/> {value.likes}
                                                     </IconButton>
                                                 </Tooltip>
