@@ -3,9 +3,17 @@ import React from "react";
 import Topbar from "./Topbar";
 import '../App.css';
 import {Input} from 'antd';
-import {Button, createMuiTheme, MenuItem, MuiThemeProvider, TextField, withStyles} from "@material-ui/core";
+import {
+    Button,
+    createMuiTheme,
+    InputAdornment,
+    MenuItem,
+    MuiThemeProvider,
+    TextField,
+    withStyles
+} from "@material-ui/core";
 import {Select} from "@material-ui/core";
-import {Add} from "@material-ui/icons";
+import {Add, CategoryOutlined, ImageOutlined, TitleOutlined} from "@material-ui/icons";
 
 const styles = (theme) => ({
     fontClr: {
@@ -84,8 +92,11 @@ class AddDebate extends React.Component {
                     <br/>
                     <br/>
                     <div>
-                        Adauga o noua dezbatere
+                        <h1 align={'center'}>
+                            Adauga o noua dezbatere
+                        </h1>
                     </div>
+                    <br/>
                     <form autoComplete={"on"}>
                         <div style={{display: "flex", flexDirection: 'column'}}>
                             <div id={"firstRow"}
@@ -99,14 +110,36 @@ class AddDebate extends React.Component {
                                            variant={'outlined'}
                                            style={{
                                                marginBottom: '1vh',
-                                               marginRight: '3vw'
-                                           }}/>
+                                               marginRight: '5vw'
+                                           }}
+                                           InputProps={{
+                                               startAdornment: (
+                                                   <InputAdornment position={'start'}>
+                                                       <TitleOutlined/>
+                                                   </InputAdornment>
+                                               )
+                                           }}
+                                />
                                 <TextField id={"imageURLInput"} variant={'outlined'} label={"URL Imagine"}
                                            onChange={this.handleInput}
-                                           style={{marginBottom: '1vh', marginRight: '3vw'}}/>
+                                           style={{marginBottom: '1vh', marginRight: '5vw'}}
+                                           InputProps={{
+                                               startAdornment: (
+                                                   <InputAdornment position={'start'}>
+                                                       <ImageOutlined/>
+                                                   </InputAdornment>
+                                               )
+                                           }}/>
 
                                 <TextField id={"categoryInput"} variant={'outlined'} label={"Categorie"}
                                            onChange={this.handleInput}
+                                           InputProps={{
+                                               startAdornment:(
+                                                   <InputAdornment position={'start'}>
+                                                       <CategoryOutlined/>
+                                                   </InputAdornment>
+                                               )
+                                           }}
                                 />
                             </div>
 
@@ -120,7 +153,8 @@ class AddDebate extends React.Component {
                                 <TextField multiline rows={8} id={"descriptionInput"} onChange={this.handleInput}
                                            variant={'outlined'}
                                            style={{marginBottom: '1vh', width: '100vw', color: 'white'}}
-                                           label={"Descriere"}/>
+                                           label={"Descriere"}
+                                />
                             </div>
 
 
