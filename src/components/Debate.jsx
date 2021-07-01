@@ -254,6 +254,7 @@ class Debate extends React.Component {
                         </Button>
                     </DialogActions>
                 </Dialog>
+
                 <div style={{margin: '5vh 20vw 0vh 20vw', 'fontSize': 'min(2vw,16px)'}}>
                     <Grid container justify={"center"} direction={"column"} alignItems={"center"} spacing={1}
                           style={{background: '#3f51b5', 'fontSize': 'min(2vw,16px)', borderRadius: ' 8px'}}>
@@ -381,6 +382,12 @@ class Debate extends React.Component {
                                                 <Tooltip title={'Noteaza impact'}>
                                                     <IconButton size={"small"}>
                                                         <Grade/>
+                                                    </IconButton>
+                                                </Tooltip>
+                                                <Tooltip title={'Vezi comentarii'}>
+                                                    <IconButton onClick={() => this.handleComments(value)}
+                                                                size={'small'}>
+                                                        <Comment/>
                                                     </IconButton>
                                                 </Tooltip>
                                             </CardActions>
