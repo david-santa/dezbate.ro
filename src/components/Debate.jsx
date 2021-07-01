@@ -14,9 +14,10 @@ import Topbar from "./Topbar";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
-import {Grade, Report, ThumbUp} from "@material-ui/icons";
+import {Comment, Grade, Report, ThumbUp} from "@material-ui/icons";
 import firebase from "firebase";
 import {Link} from 'react-router-dom'
+import ChatBubble from "react-chat-bubble";
 
 const db = firebase.firestore();
 
@@ -50,6 +51,8 @@ class Debate extends React.Component {
         conArgumentsArray: [],
         openDialogPro: false,
         openDialogCon: false,
+        commentsDialogOpen: false,
+        selectedComments: [],
         argumentField: '',
         likedArguments: []
     }
@@ -92,6 +95,7 @@ class Debate extends React.Component {
     handleCloseDialog = () => {
         this.setState({openDialogPro: false})
         this.setState({openDialogCon: false})
+        this.setState({commentsDialogOpen: false})
     }
 
     handleInputChange = (e) => {
@@ -162,15 +166,19 @@ class Debate extends React.Component {
     ]
 
     calculateImpact = (arr) => {
+        console.log(arr)
         let sum = 0;
-        for (const grade in arr) {
-            sum += grade
+        for (let i in arr) {
+            console.log(arr[i])
+            sum += arr[i]
         }
+        console.log(sum/arr.length)
         return sum / arr.length
     }
 
-    handleLike = () => {
-
+    handleComments = (value) => {
+        this.setState({commentsDialogOpen: true})
+        this.setState({selectedComments: value.comments})
     }
 
     render() {
@@ -180,6 +188,26 @@ class Debate extends React.Component {
                     <Topbar/>
                 </div>
                 <br/> <br/> <br/>
+                {
+                    /**
+                     * DIALOG Comentarii
+                     */
+                }
+                <Dialog open={this.state.commentsDialogOpen} onClose={this.handleCloseDialog}>
+                    <DialogTitle style={{background: "#3F51B5"}}>
+                        Comentarii
+                    </DialogTitle>
+                    <DialogContent style={{background: "#3F51B5"}}>
+                        {this.state.selectedComments.map((value, index) => (
+                            <div>
+                                <br/>
+                                <Paper elevation={3} style={{background: '#1b1b2f', height: '5%'}}>
+                                    {value}
+                                </Paper>
+                            </div>
+                        ))}
+                    </DialogContent>
+                </Dialog>
                 {
                     /**
                      * DIALOG PRO
@@ -298,6 +326,12 @@ class Debate extends React.Component {
                                                 <Tooltip title={'Noteaza impact'}>
                                                     <IconButton size={"small"}>
                                                         <Grade/>
+                                                    </IconButton>
+                                                </Tooltip>
+                                                <Tooltip title={'Vezi comentarii'}>
+                                                    <IconButton onClick={() => this.handleComments(value)}
+                                                                size={'small'}>
+                                                        <Comment/>
                                                     </IconButton>
                                                 </Tooltip>
                                             </CardActions>
